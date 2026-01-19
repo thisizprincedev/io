@@ -1,5 +1,5 @@
 # Build stage
-FROM alpine:3.22
+FROM alpine:3.22 AS builder
 
 ENV NODE_VERSION=25.3.0
 
