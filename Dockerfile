@@ -30,7 +30,6 @@ COPY --from=builder /app/prisma ./prisma
 
 # Copy application files
 COPY server.js .
-COPY .env .
 COPY package*.json ./
 
 # Create non-root user for security
