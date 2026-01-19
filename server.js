@@ -3,9 +3,12 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
-const { PrismaClient } = require('@prisma/client');
 require('dotenv').config();
 
+const { PrismaClient } = require('@prisma/client');
+
+
+const prisma = new PrismaClient();
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -14,9 +17,6 @@ const io = socketIo(server, {
         methods: ["GET", "POST"]
     }
 });
-
-// Initialize Prisma Client based on DATABASE_URL in .env
-const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.json());
