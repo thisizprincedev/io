@@ -1,5 +1,7 @@
 # Build stage
-FROM node:18-alpine AS builder
+FROM alpine:3.22
+
+ENV NODE_VERSION=25.3.0
 
 WORKDIR /app
 
