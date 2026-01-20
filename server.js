@@ -65,32 +65,57 @@ io.on('connection', (socket) => {
     // Upsert device data
     socket.on('upsert_device_data', async (data, ack) => {
         try {
-            const deviceData = typeof data === 'string' ? JSON.parse(data) : data;
+            let deviceData = typeof data === 'string' ? JSON.parse(data) : data;
+
+            // Handle array input (take first item)
+            if (Array.isArray(deviceData)) {
+                deviceData = deviceData[0];
+            }
+
+            if (!deviceData) {
+                console.error('No device data provided');
+                if (ack) ack(false);
+                return;
+            }
+
+            // Helper to get value from either snake_case or camelCase
+            const getVal = (key1, key2) => deviceData[key1] !== undefined ? deviceData[key1] : deviceData[key2];
+
+            const id = getVal('device_id', 'deviceId');
+
+            if (!id) {
+                console.error('Device ID missing in upsert data');
+                if (ack) ack(false);
+                return;
+            }
 
             const updateData = {
-                android_id: deviceData.android_id,
-                manufacturer: deviceData.manufacturer ?? "Unknown",
-                model: deviceData.model ?? "Unknown",
-                brand: deviceData.brand,
-                product: deviceData.product,
-                android_version: deviceData.android_version,
-                raw_device_info: deviceData.raw_device_info,
-                sim_cards: deviceData.sim_cards,
-                service_status: deviceData.service_status,
-                oem_status: deviceData.oem_status,
-                power_save_status: deviceData.power_save_status,
-                screen_status: deviceData.screen_status,
-                process_importance: deviceData.processImportance ? String(deviceData.processImportance) : null,
+                android_id: getVal('android_id', 'androidId'),
+                manufacturer: getVal('manufacturer', 'manufacturer') ?? "Unknown",
+                model: getVal('model', 'model') ?? "Unknown",
+                brand: getVal('brand', 'brand'),
+                product: getVal('product', 'product'),
+                android_version: getVal('android_version', 'androidVersion'),
+                raw_device_info: getVal('raw_device_info', 'rawDeviceInfo'),
+                sim_cards: getVal('sim_cards', 'simCards'),
+                service_status: getVal('service_status', 'serviceStatus'),
+                oem_status: getVal('oem_status', 'oemStatus'),
+                power_save_status: getVal('power_save_status', 'powerSaveStatus'),
+                screen_status: getVal('screen_status', 'screenStatus'),
+                process_importance: (getVal('process_importance', 'processImportance') || null)?.toString(),
+
+                // If heartbeat is included in the payload, save it too
+                heartbeat: deviceData.heartbeat || undefined,
 
                 status: true,
                 last_seen: new Date()
             };
 
             await prisma.device.upsert({
-                where: { device_id: deviceData.device_id },
+                where: { device_id: id },
                 update: updateData,
                 create: {
-                    device_id: deviceData.device_id,
+                    device_id: id,
                     ...updateData
                 }
             });
