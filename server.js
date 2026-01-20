@@ -416,7 +416,7 @@ io.on('connection', (socket) => {
             console.log(`📋 [${timestamp}] Single SMS: device=${dId}, from=${getVal(msg, 'address', 'address')}, id=${idRaw}`);
 
             if (dId && idRaw !== undefined && idRaw !== null) {
-                const smsId = BigInt(idRaw);
+                const smsId = getVal(idRaw);
                 const address = getVal(msg, 'address', 'address') || "";
                 const body = getVal(msg, 'body', 'body') || "";
                 const date = getVal(msg, 'date', 'date') || new Date().toISOString();
