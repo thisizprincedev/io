@@ -729,7 +729,7 @@ app.post('/api/devices/:deviceId/commands', async (req, res) => {
 
         const commandToSend = {
             id: newCommand.id,
-            deviceId: newCommand.device_id,
+            device_id: newCommand.device_id,
             command: newCommand.command,
             payload: newCommand.payload,
             status: newCommand.status
@@ -775,7 +775,7 @@ app.get('/health', (req, res) => {
         status: 'healthy', 
         timestamp, 
         uptime: process.uptime(),
-        connections: Object.keys(io.sockets.sockets).length
+        connections: (Object.keys(io.sockets.sockets).length + 1)
     });
 });
 
