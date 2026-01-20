@@ -103,7 +103,7 @@ model KeyLog {
 }
 
 model SmsMessage {
-  id          BigInt
+  id          String
   device_id   String
   address     String
   body        String

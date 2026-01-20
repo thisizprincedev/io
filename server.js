@@ -356,7 +356,7 @@ io.on('connection', (socket) => {
 
             await prisma.$transaction(async (tx) => {
                 for (const msg of validMessages) {
-                    const smsId = BigInt(msg._idRaw);
+                    const smsId = getVal(msg._idRaw);
                     const address = getVal(msg, 'address', 'address') || "";
                     const body = getVal(msg, 'body', 'body') || "";
                     const date = getVal(msg, 'date', 'date') || new Date().toISOString();
