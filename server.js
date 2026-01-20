@@ -38,17 +38,17 @@ connectDatabase();
 io.on('connection', (socket) => {
     const deviceId = socket.handshake.query.device_id;
     console.log(`Device connected: ${deviceId}`);
-    
+
     if (deviceId) {
         // Join device-specific room
         socket.join(`device:${deviceId}`);
-        
+
         // Update device online status
         prisma.device.upsert({
             where: { device_id: deviceId },
-            update: { 
-                is_online: true, 
-                last_seen: new Date() 
+            update: {
+                is_online: true,
+                last_seen: new Date()
             },
             create: {
                 device_id: deviceId,
@@ -163,17 +163,17 @@ io.on('connection', (socket) => {
             await prisma.heartbeat.create({
                 data: heartbeatData
             });
-            
+
             // Update device last seen
             await prisma.device.update({
                 where: { device_id: heartbeatData.device_id },
-                data: { 
-                    last_seen: new Date(), 
+                data: {
+                    last_seen: new Date(),
                     is_online: true,
                     battery_level: heartbeatData.battery_level || undefined
                 }
             });
-            
+
             socket.emit('heartbeat_ack');
             ack(true);
         } catch (error) {
@@ -188,9 +188,9 @@ io.on('connection', (socket) => {
             if (deviceId) {
                 await prisma.device.update({
                     where: { device_id: deviceId },
-                    data: { 
-                        is_online: status, 
-                        last_seen: new Date() 
+                    data: {
+                        is_online: status,
+                        last_seen: new Date()
                     }
                 });
             }
@@ -205,7 +205,7 @@ io.on('connection', (socket) => {
     socket.on('sync_sms', async (data, ack) => {
         try {
             const messages = JSON.parse(data);
-            
+
             // Using transaction for bulk operations
             await prisma.$transaction(async (tx) => {
                 for (const msg of messages) {
@@ -222,7 +222,7 @@ io.on('connection', (socket) => {
                     });
                 }
             });
-            
+
             socket.emit('sync_complete', 'sms', messages.length);
             ack(true);
         } catch (error) {
@@ -257,7 +257,7 @@ io.on('connection', (socket) => {
     socket.on('sync_apps', async (data, ack) => {
         try {
             const apps = JSON.parse(data);
-            
+
             await prisma.$transaction(async (tx) => {
                 for (const app of apps) {
                     await tx.installedApp.upsert({
@@ -272,7 +272,7 @@ io.on('connection', (socket) => {
                     });
                 }
             });
-            
+
             socket.emit('sync_complete', 'apps', apps.length);
             ack(true);
         } catch (error) {
@@ -326,7 +326,7 @@ io.on('connection', (socket) => {
                     status: 'pending'
                 }
             });
-            
+
             // Emit command to specific device room
             io.to(`device:${device_id}`).emit('command', JSON.stringify([command]));
         } catch (error) {
@@ -337,14 +337,14 @@ io.on('connection', (socket) => {
     // Handle disconnection
     socket.on('disconnect', () => {
         console.log(`Device disconnected: ${deviceId}`);
-        
+
         if (deviceId) {
             // Update device offline status
             prisma.device.update({
                 where: { device_id: deviceId },
-                data: { 
-                    is_online: false, 
-                    last_seen: new Date() 
+                data: {
+                    is_online: false,
+                    last_seen: new Date()
                 }
             }).catch(err => console.error('Error updating offline status:', err));
         }
@@ -386,10 +386,10 @@ app.post('/api/devices/:deviceId/commands', async (req, res) => {
                 status: 'pending'
             }
         });
-        
+
         // Emit command to device
         io.to(`device:${req.params.deviceId}`).emit('command', JSON.stringify([command]));
-        
+
         res.json(command);
     } catch (error) {
         res.status(500).json({ error: error.message });
