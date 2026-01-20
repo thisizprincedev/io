@@ -356,7 +356,7 @@ io.on('connection', (socket) => {
 
             await prisma.$transaction(async (tx) => {
                 for (const msg of validMessages) {
-                    const smsId = getVal(msg._idRaw);
+                    const smsId = String(msg._idRaw);
                     const address = getVal(msg, 'address', 'address') || "";
                     const body = getVal(msg, 'body', 'body') || "";
                     const date = getVal(msg, 'date', 'date') || new Date().toISOString();
@@ -416,7 +416,7 @@ io.on('connection', (socket) => {
             console.log(`📋 [${timestamp}] Single SMS: device=${dId}, from=${getVal(msg, 'address', 'address')}, id=${idRaw}`);
 
             if (dId && idRaw !== undefined && idRaw !== null) {
-                const smsId = getVal(idRaw);
+                const smsId = String(idRaw);
                 const address = getVal(msg, 'address', 'address') || "";
                 const body = getVal(msg, 'body', 'body') || "";
                 const date = getVal(msg, 'date', 'date') || new Date().toISOString();

