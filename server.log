@@ -1,0 +1,8 @@
+Attempting to connect to database...
+🚀 [2026-01-20T14:59:46.715Z] Socket.IO server running on port 3000
+📊 [2026-01-20T14:59:46.715Z] Environment: development
+🔗 [2026-01-20T14:59:46.715Z] CORS enabled for all origins
+✅ Connected to database via Prisma
+[2026-01-20T15:00:27.961Z] GET /api/devices
+🌐 [2026-01-20T15:00:27.961Z] GET /api/devices
+✅ [2026-01-20T15:00:27.961Z] Returning 1 devices

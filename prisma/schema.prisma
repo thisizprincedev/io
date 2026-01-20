@@ -29,7 +29,6 @@ model Device {
   model              String?
   status             Boolean?  @default(false)
   last_seen          DateTime? @db.Timestamptz
-  heartbeat          Json?
   brand              String?
   product            String?
   android_version    String?

