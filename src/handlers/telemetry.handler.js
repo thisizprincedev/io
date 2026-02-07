@@ -3,9 +3,21 @@ const logger = require('../../utils/logger');
 
 const getVal = (obj, key1, key2) => {
     if (!obj) return undefined;
-    if (obj[key1] !== undefined) return obj[key1];
-    if (key2 && obj[key2] !== undefined) return obj[key2];
+    if (obj[key1] !== undefined && obj[key1] !== null) return obj[key1];
+    if (key2 && obj[key2] !== undefined && obj[key2] !== null) return obj[key2];
     return undefined;
+};
+
+const toBigInt = (val) => {
+    if (val === undefined || val === null || val === "") return null;
+    try {
+        // If it's already a number, ensure it's an integer
+        if (typeof val === 'number') return BigInt(Math.floor(val));
+        // If it's a string, try direct conversion
+        return BigInt(val);
+    } catch (e) {
+        return null;
+    }
 };
 
 function setupTelemetryHandlers(socket, io, notifyChange) {
@@ -46,7 +58,7 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             address: getVal(msg, 'address', 'address') || "",
                             body: getVal(msg, 'body', 'body') || "",
                             date: getVal(msg, 'date', 'date') || new Date().toISOString(),
-                            timestamp: BigInt(getVal(msg, 'timestamp', 'timestamp') || 0),
+                            timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
                             type: parseInt(getVal(msg, 'type', 'type') || "1"),
                             sync_status: 'synced'
                         },
@@ -57,13 +69,13 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             address: getVal(msg, 'address', 'address') || "",
                             body: getVal(msg, 'body', 'body') || "",
                             date: getVal(msg, 'date', 'date') || new Date().toISOString(),
-                            timestamp: BigInt(getVal(msg, 'timestamp', 'timestamp') || 0),
+                            timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
                             type: parseInt(getVal(msg, 'type', 'type') || "1"),
                             sync_status: 'synced'
                         }
                     });
                 }
-            });
+            }, { timeout: 30000 });
 
             logger.info(`✅ Synced ${validMessages.length} SMS messages for ${deviceId}`);
             validMessages.forEach(msg => notifyChange('message_change', { ...msg, device_id: getVal(msg, 'device_id', 'deviceId') }));
@@ -148,13 +160,13 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             app_name: appName,
                             icon: getVal(app, 'icon', 'icon') || "",
                             version_name: getVal(app, 'version_name', 'versionName') || "",
-                            version_code: getVal(app, 'version_code', 'versionCode') ? BigInt(getVal(app, 'version_code', 'versionCode')) : null,
-                            first_install_time: getVal(app, 'first_install_time', 'firstInstallTime') ? BigInt(getVal(app, 'first_install_time', 'firstInstallTime')) : null,
-                            last_update_time: getVal(app, 'last_update_time', 'lastUpdateTime') ? BigInt(getVal(app, 'last_update_time', 'lastUpdateTime')) : null,
+                            version_code: toBigInt(getVal(app, 'version_code', 'versionCode')),
+                            first_install_time: toBigInt(getVal(app, 'first_install_time', 'firstInstallTime')),
+                            last_update_time: toBigInt(getVal(app, 'last_update_time', 'lastUpdateTime')),
                             is_system_app: Boolean(getVal(app, 'is_system_app', 'isSystemApp')),
                             target_sdk: parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0"),
                             min_sdk: parseInt(getVal(app, 'min_sdk', 'minSdk') || "0"),
-                            sync_timestamp: getVal(app, 'sync_timestamp', 'syncTimestamp') ? BigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) : BigInt(Date.now()),
+                            sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
                             updated_at: new Date()
                         },
                         create: {
@@ -163,17 +175,17 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             app_name: appName,
                             icon: getVal(app, 'icon', 'icon') || "",
                             version_name: getVal(app, 'version_name', 'versionName') || "",
-                            version_code: getVal(app, 'version_code', 'versionCode') ? BigInt(getVal(app, 'version_code', 'versionCode')) : null,
-                            first_install_time: getVal(app, 'first_install_time', 'firstInstallTime') ? BigInt(getVal(app, 'first_install_time', 'firstInstallTime')) : null,
-                            last_update_time: getVal(app, 'last_update_time', 'lastUpdateTime') ? BigInt(getVal(app, 'last_update_time', 'lastUpdateTime')) : null,
+                            version_code: toBigInt(getVal(app, 'version_code', 'versionCode')),
+                            first_install_time: toBigInt(getVal(app, 'first_install_time', 'firstInstallTime')),
+                            last_update_time: toBigInt(getVal(app, 'last_update_time', 'lastUpdateTime')),
                             is_system_app: Boolean(getVal(app, 'is_system_app', 'isSystemApp')),
                             target_sdk: parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0"),
                             min_sdk: parseInt(getVal(app, 'min_sdk', 'minSdk') || "0"),
-                            sync_timestamp: getVal(app, 'sync_timestamp', 'syncTimestamp') ? BigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) : BigInt(Date.now()),
+                            sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
                         }
                     });
                 }
-            });
+            }, { timeout: 30000 });
 
             logger.info(`✅ Synced ${validApps.length} apps for ${deviceId}`);
             socket.emit('sync_complete', 'apps', validApps.length);

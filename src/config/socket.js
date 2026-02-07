@@ -12,7 +12,7 @@ function configureSocket(server) {
         perMessageDeflate: false,    // Reduce CPU/Memory per connection
         pingTimeout: 60000,
         pingInterval: 25000,
-        maxHttpBufferSize: 1e6,
+        maxHttpBufferSize: 1e7,
         cleanupEmptyChildNamespaces: true
     });
 

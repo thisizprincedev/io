@@ -43,3 +43,10 @@
 {"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-07T15:52:55.977Z"}
 {"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T15:52:55.978Z"}
 {"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-07T15:52:56.077Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T16:02:56.629Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T16:12:57.379Z"}
+{"level":"info","message":"🚀 Worker 35299 listening on port 3001","timestamp":"2026-02-07T16:13:28.488Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-07T16:13:28.490Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T16:13:28.753Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-07T16:13:28.754Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-07T16:13:28.810Z"}

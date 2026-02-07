@@ -64,44 +64,54 @@ async function handleConnection(socket, io, notifyChange) {
     });
 
     // 2. Device Data Upsert (Initial or detailed update)
-    socket.on('upsert_device_data', async (data, ack) => {
+    socket.on('upsert_device_data', async (rawData, ack) => {
         try {
-            const dId = data.device_id || data.deviceId || deviceId;
+            const data = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
+
+            const getVal = (obj, key1, key2) => {
+                if (!obj) return undefined;
+                if (obj[key1] !== undefined && obj[key1] !== null) return obj[key1];
+                if (key2 && obj[key2] !== undefined && obj[key2] !== null) return obj[key2];
+                return undefined;
+            };
+
+            const dId = getVal(data, 'device_id', 'deviceId') || deviceId;
             if (dId !== deviceId && !socket.isAdmin) {
                 logger.warn({ deviceId, attemptedDeviceId: dId }, '⚠️ Security Alert: Unauthorized device data upsert attempt');
                 if (ack) ack(false);
                 return;
             }
 
+            const deviceInfo = {
+                android_id: getVal(data, 'android_id', 'androidId'),
+                manufacturer: getVal(data, 'manufacturer'),
+                model: getVal(data, 'model'),
+                brand: getVal(data, 'brand'),
+                product: getVal(data, 'product'),
+                android_version: getVal(data, 'android_version', 'androidVersion'),
+                app_id: getVal(data, 'app_id', 'appId') || appId,
+                build_id: getVal(data, 'build_id', 'buildId') || buildId,
+                raw_device_info: JSON.stringify(data),
+                sim_cards: getVal(data, 'sim_cards', 'simCards'),
+                service_status: getVal(data, 'service_status', 'serviceStatus'),
+                oem_status: getVal(data, 'oem_status', 'oemStatus'),
+                power_save_status: getVal(data, 'power_save_status', 'powerSaveStatus'),
+                screen_status: getVal(data, 'screen_status', 'screenStatus'),
+                process_importance: String(getVal(data, 'process_importance') || ""),
+                last_seen: new Date(),
+                status: true
+            };
+
             await prisma.device.upsert({
                 where: { device_id: dId },
-                update: {
-                    android_id: data.android_id || data.androidId || null,
-                    manufacturer: data.manufacturer || null,
-                    model: data.model || null,
-                    brand: data.brand || null,
-                    product: data.product || null,
-                    android_version: data.androidVersion || data.android_version || null,
-                    raw_device_info: JSON.stringify(data),
-                    sim_cards: data.sim_cards || data.simCards || null,
-                    last_seen: new Date(),
-                    status: true
-                },
+                update: deviceInfo,
                 create: {
                     device_id: dId,
-                    android_id: data.android_id || data.androidId || null,
-                    manufacturer: data.manufacturer || null,
-                    model: data.model || null,
-                    brand: data.brand || null,
-                    product: data.product || null,
-                    android_version: data.androidVersion || data.android_version || null,
-                    raw_device_info: JSON.stringify(data),
-                    sim_cards: data.sim_cards || data.simCards || null,
-                    last_seen: new Date(),
-                    status: true
+                    ...deviceInfo
                 }
             });
 
+            logger.info({ deviceId: dId }, '✅ Device data updated');
             notifyChange('device_change', { device_id: dId, status: true, last_seen: new Date() });
             if (ack) ack(true);
         } catch (err) {
