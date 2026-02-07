@@ -8,7 +8,7 @@ function configureSocket(server) {
             methods: ["GET", "POST"]
         },
         adapter: createRedisAdapter(),
-        transports: ['websocket'], // Optimized for high concurrency
+        transports: ['polling', 'websocket'], // Allow both for better compatibility
         perMessageDeflate: false,    // Reduce CPU/Memory per connection
         pingTimeout: 60000,
         pingInterval: 25000,

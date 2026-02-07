@@ -29,3 +29,17 @@
 {"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-07T15:19:07.128Z"}
 {"device":"TEST_HMAC_DEVICE_SOCKET","label":"🔌 Device connected","level":"info","message":"Log event","socket":"zT71O96FMxHmzgaFAAAB","timestamp":"2026-02-07T15:20:02.893Z"}
 {"deviceId":"TEST_HMAC_DEVICE_SOCKET","label":"📍 Device joined room","level":"info","message":"Log event","timestamp":"2026-02-07T15:20:02.894Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T15:29:07.714Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-07T15:29:07.923Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-07T15:29:08.269Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T15:39:08.419Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3001","stack":"Error: listen EADDRINUSE: address already in use :::3001\n    at Server.setupListenHandle [as _listen2] (node:net:1939:16)\n    at listenInCluster (node:net:1996:12)\n    at Server.listen (node:net:2101:7)\n    at Object.<anonymous> (/Users/dev/AndroidStudioProjects/SrmApp/MyPanel/SocketIOProviderServer/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1734:14)\n    at Object..js (node:internal/modules/cjs/loader:1899:10)\n    at Module.load (node:internal/modules/cjs/loader:1469:32)\n    at Module._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)","timestamp":"2026-02-07T15:41:11.963Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T15:41:12.201Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-07T15:41:12.218Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-07T15:41:18.489Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T15:49:09.169Z"}
+{"level":"info","message":"🚀 Worker 32792 listening on port 3001","timestamp":"2026-02-07T15:52:55.708Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-07T15:52:55.710Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-07T15:52:55.977Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-07T15:52:55.978Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-07T15:52:56.077Z"}
