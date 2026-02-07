@@ -131,6 +131,88 @@ async function handleConnection(socket, io, notifyChange) {
         }
     });
 
+    // 4. Mark Command Delivered
+    socket.on('mark_command_delivered', async (commandId, ack) => {
+        try {
+            if (!commandId) return ack && ack(false);
+
+            await prisma.deviceCommand.update({
+                where: { id: commandId },
+                data: {
+                    status: 'delivered',
+                    delivered_at: new Date()
+                }
+            });
+
+            logger.info({ deviceId, commandId }, '✅ Command marked as delivered');
+            if (ack) ack(true);
+        } catch (err) {
+            logger.error(err, `❌ Error marking command ${commandId} as delivered for ${deviceId}`);
+            if (ack) ack(false);
+        }
+    });
+
+    // 5. Mark Command Failed
+    socket.on('mark_command_failed', async (data, ack) => {
+        try {
+            const commandId = typeof data === 'string' ? data : data.command_id;
+            const error = data.error || 'Unknown error';
+
+            if (!commandId) return ack && ack(false);
+
+            await prisma.deviceCommand.update({
+                where: { id: commandId },
+                data: {
+                    status: 'failed',
+                    error: error,
+                    updated_at: new Date()
+                }
+            });
+
+            logger.info({ deviceId, commandId, error }, '❌ Command marked as failed');
+            if (ack) ack(true);
+        } catch (err) {
+            logger.error(err, `❌ Error marking command ${commandId} as failed for ${deviceId}`);
+            if (ack) ack(false);
+        }
+    });
+
+    // 6. Get Pending Commands
+    socket.on('get_pending_commands', async (dId, ack) => {
+        try {
+            const targetDeviceId = dId || deviceId;
+            if (targetDeviceId !== deviceId && !socket.isAdmin) {
+                if (ack) ack(JSON.stringify([]));
+                return;
+            }
+
+            const commands = await prisma.deviceCommand.findMany({
+                where: {
+                    device_id: targetDeviceId,
+                    status: 'pending'
+                },
+                orderBy: {
+                    created_at: 'asc'
+                }
+            });
+
+            // Format for mobile app
+            const formattedCommands = commands.map(cmd => ({
+                id: cmd.id,
+                device_id: cmd.device_id,
+                command: cmd.command,
+                payload: cmd.payload,
+                status: cmd.status,
+                created_at: cmd.created_at
+            }));
+
+            if (ack) ack(JSON.stringify(formattedCommands));
+        } catch (err) {
+            logger.error(err, `❌ Error fetching pending commands for ${deviceId}`);
+            if (ack) ack(JSON.stringify([]));
+        }
+    });
+
     // Register other handlers
     require('./telemetry.handler')(socket, io, notifyChange);
 }

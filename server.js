@@ -4,7 +4,7 @@ const logger = require('./utils/logger');
 require('dotenv').config();
 
 // --- MASTER PROCESS ---
-if (cluster.isPrimary) {
+if (cluster.isPrimary && process.env.DISABLE_CLUSTER !== 'true') {
     const numWorkers = parseInt(process.env.SOCKET_WORKERS) || os.cpus().length;
     logger.info(`Master process starting ${numWorkers} workers...`);
 

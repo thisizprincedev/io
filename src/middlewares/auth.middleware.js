@@ -35,9 +35,9 @@ function setupAuthMiddleware(io) {
 
             if (signature === expectedSignature) {
                 // Check timestamp freshness (5 min window)
-                const now = Date.now();
+                const now = Math.floor(Date.now() / 1000);
                 const sigTime = parseInt(timestamp);
-                if (Math.abs(now - sigTime) < 300000) {
+                if (Math.abs(now - sigTime) < 300) {
                     socket.deviceId = deviceId;
                     socket.appId = app_id;
                     socket.buildId = build_id;

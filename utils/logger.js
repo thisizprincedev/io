@@ -105,7 +105,7 @@ const transports = [
         maxFiles: 5
     }),
     new LiveBufferTransport(),
-    new RelayTransport({ relayUrl: relayUrl })
+    // new RelayTransport({ relayUrl: relayUrl }) // Disabled to prevent recursive log loop
 ];
 
 // Add Elasticsearch transport if enabled
