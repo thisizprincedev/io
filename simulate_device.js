@@ -1,6 +1,6 @@
 const { io } = require('socket.io-client');
 
-const SERVER_URL = 'http://localhost:3002';
+const SERVER_URL = 'http://localhost:3001';
 const DEVICE_ID = 'SIM_DEVICE_12345';
 const APP_ID = '1aa9b800-370d-4152-b21d-ef302e5cdb6c';
 const BUILD_ID = 'v1.0.0-test';
@@ -14,8 +14,10 @@ const socket = io(SERVER_URL, {
     query: {
         device_id: DEVICE_ID,
         app_id: APP_ID,
-        build_id: BUILD_ID
-    }
+        build_id: BUILD_ID,
+        auth_key: 'srm-mobile-default-key-12345'
+    },
+    transports: ['websocket']
 });
 
 socket.on('connect', () => {
