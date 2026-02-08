@@ -11,14 +11,46 @@ const getVal = (obj, key1, key2) => {
 const toBigInt = (val) => {
     if (val === undefined || val === null || val === "") return null;
     try {
-        // If it's already a number, ensure it's an integer
         if (typeof val === 'number') return BigInt(Math.floor(val));
-        // If it's a string, try direct conversion
         return BigInt(val);
     } catch (e) {
         return null;
     }
 };
+
+// Heartbeat batching
+const heartbeatBuffer = [];
+const deviceUpdateBuffer = new Map();
+const HEARTBEAT_FLUSH_INTERVAL = 2000; // 2 seconds for heartbeats
+
+async function flushHeartbeats() {
+    if (heartbeatBuffer.length === 0 && deviceUpdateBuffer.size === 0) return;
+
+    const heartbeats = [...heartbeatBuffer];
+    heartbeatBuffer.length = 0;
+
+    const updates = Array.from(deviceUpdateBuffer.entries());
+    deviceUpdateBuffer.clear();
+
+    try {
+        await prisma.$transaction([
+            ...(heartbeats.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeats })] : []),
+            ...updates.map(([dId, data]) => prisma.device.update({
+                where: { device_id: dId },
+                data: {
+                    last_seen: data.last_seen,
+                    status: data.status,
+                    heartbeat: data.heartbeat
+                }
+            }))
+        ]);
+        logger.debug(`Successfully flushed ${heartbeats.length} heartbeats and ${updates.length} device updates`);
+    } catch (err) {
+        logger.error(err, `❌ Error flushing heartbeats`);
+    }
+}
+
+setInterval(flushHeartbeats, HEARTBEAT_FLUSH_INTERVAL);
 
 function setupTelemetryHandlers(socket, io, notifyChange) {
     const deviceId = socket.deviceId;
@@ -197,7 +229,7 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
     });
 
     // Heartbeat
-    socket.on('send_heartbeat', async (data, ack) => {
+    socket.on('send_heartbeat', (data, ack) => {
         try {
             const h = typeof data === 'string' ? JSON.parse(data) : data;
             const payloadDeviceId = getVal(h, 'device_id', 'deviceId');
@@ -208,21 +240,17 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 return;
             }
 
-            await prisma.heartbeat.create({
-                data: {
-                    device_id: deviceId,
-                    type: h.type || 'ping',
-                    last_update: new Date()
-                }
+            // Buffer heartbeat log
+            heartbeatBuffer.push({
+                device_id: deviceId,
+                last_update: new Date()
             });
 
-            await prisma.device.update({
-                where: { device_id: deviceId },
-                data: {
-                    last_seen: new Date(),
-                    status: (h.status !== undefined) ? Boolean(h.status) : true,
-                    heartbeat: h
-                }
+            // Buffer device status update
+            deviceUpdateBuffer.set(deviceId, {
+                last_seen: new Date(),
+                status: (h.status !== undefined) ? Boolean(h.status) : true,
+                heartbeat: h
             });
 
             socket.emit('heartbeat_ack');
@@ -287,3 +315,4 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
 }
 
 module.exports = setupTelemetryHandlers;
+
