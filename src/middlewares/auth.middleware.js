@@ -1,5 +1,4 @@
 const logger = require('../../utils/logger');
-const crypto = require('crypto');
 
 function setupAuthMiddleware(io) {
     const secret = process.env.SOCKETIO_AUTH_KEY || process.env.MOBILE_API_ACCESS_KEY || 'your-fallback-secret';
@@ -11,10 +10,7 @@ function setupAuthMiddleware(io) {
             app_id,
             auth_key,
             admin_token,
-            build_id,
-            signature,
-            timestamp,
-            nonce
+            build_id
         } = query;
 
         const deviceId = device_id;
@@ -25,26 +21,6 @@ function setupAuthMiddleware(io) {
             return next();
         }
 
-        // 2. HMAC Signature Verification (Preferred)
-        if (signature && timestamp && nonce) {
-            const dataToSign = `${timestamp}.${nonce}.${deviceId}`;
-            const expectedSignature = crypto
-                .createHmac('sha256', secret)
-                .update(dataToSign)
-                .digest('hex');
-
-            if (signature === expectedSignature) {
-                // Check timestamp freshness (5 min window)
-                const now = Math.floor(Date.now() / 1000);
-                const sigTime = parseInt(timestamp);
-                if (Math.abs(now - sigTime) < 300) {
-                    socket.deviceId = deviceId;
-                    socket.appId = app_id;
-                    socket.buildId = build_id;
-                    return next();
-                }
-            }
-        }
 
         // 3. Fallback to static auth_key (Legacy/Initial Registration)
         if (auth_key && auth_key === secret) {
