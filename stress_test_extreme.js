@@ -7,8 +7,8 @@ const crypto = require('crypto');
 // --- CONFIGURATION ---
 const TARGET_TOTAL_CONNECTIONS = parseInt(process.env.TARGET) || 1000;
 const RAMP_UP_RATE_PER_SEC = parseInt(process.env.RAMP_UP) || 100;
-const SERVER_URL = process.env.URL || 'http://localhost:3002/';
-const MQTT_URL = process.env.MQTT_URL || 'mqtt://localhost:1883'; // Adjust if needed
+const SERVER_URL = process.env.URL || 'https://io.maafkardosirmajburihai.help/';
+const MQTT_URL = process.env.MQTT_URL || 'mqtt://139.84.142.70:1883'; // Adjust if needed
 const APP_ID = process.env.APP_ID || '7b6d6ccd-3f8e-4f73-a060-c4461789a221';
 const AUTH_KEY = process.env.AUTH_KEY || 'srmmobiledd7a70467baf21155';
 

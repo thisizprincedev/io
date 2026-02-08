@@ -7,29 +7,60 @@ const logger = require('../../utils/logger');
 const httpAgent = new http.Agent({ keepAlive: true });
 const httpsAgent = new https.Agent({ keepAlive: true });
 
-async function notifyChange(type, data) {
+const BATCH_INTERVAL = parseInt(process.env.NOTIFICATION_BATCH_INTERVAL) || 100;
+const MAX_BATCH_SIZE = parseInt(process.env.NOTIFICATION_MAX_BATCH_SIZE) || 50;
+
+let batchBuffer = [];
+let batchTimeout = null;
+
+async function flushBatch() {
+    if (batchBuffer.length === 0) return;
+
     const notifyUrl = process.env.NOTIFY_URL;
     const apiKey = process.env.NOTIFY_API_KEY;
-    if (!notifyUrl || process.env.HIGH_SCALE_MODE === 'true') return;
+    const currentBatch = [...batchBuffer];
+    batchBuffer = [];
+    if (batchTimeout) {
+        clearTimeout(batchTimeout);
+        batchTimeout = null;
+    }
 
     try {
         await axios.post(notifyUrl, {
-            type,
-            data,
+            isBatch: true,
+            events: currentBatch,
             timestamp: new Date().toISOString(),
             apiKey: apiKey
         }, {
             headers: {
                 'Content-Type': 'application/json'
             },
-            timeout: 5000, // Increased timeout for heavy load
+            timeout: 10000, // Increased timeout for batches
             httpAgent,
             httpsAgent
         });
+        logger.debug(`Successfully sent batch of ${currentBatch.length} events`);
     } catch (err) {
-        // Silently fail notification to avoid blocking main logic
-        logger.debug(`Failed to notify change ${type}: ${err.message}`);
+        logger.debug(`Failed to send batch of ${currentBatch.length} events: ${err.message}`);
+    }
+}
+
+async function notifyChange(type, data) {
+    const notifyUrl = process.env.NOTIFY_URL;
+    if (!notifyUrl || process.env.HIGH_SCALE_MODE === 'true') return;
+
+    batchBuffer.push({
+        type,
+        data,
+        timestamp: new Date().toISOString()
+    });
+
+    if (batchBuffer.length >= MAX_BATCH_SIZE) {
+        await flushBatch();
+    } else if (!batchTimeout) {
+        batchTimeout = setTimeout(flushBatch, BATCH_INTERVAL);
     }
 }
 
 module.exports = notifyChange;
+
