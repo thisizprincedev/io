@@ -1,4 +1,5 @@
 const { prisma } = require('../config/database');
+const { pubClient } = require('../config/redis');
 const logger = require('../../utils/logger');
 
 function setupAdminHandlers(socket, io, notifyChange) {
@@ -21,6 +22,9 @@ function setupAdminHandlers(socket, io, notifyChange) {
                     status: 'pending'
                 }
             });
+
+            // Set Redis cache flag to let device know it has pending commands
+            await pubClient.set(`commands:pending:${device_id}`, '1', 'EX', 3600);
 
             const commandToSend = {
                 id: newCommand.id,

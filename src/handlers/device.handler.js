@@ -1,4 +1,5 @@
 const { prisma } = require('../config/database');
+const { pubClient } = require('../config/redis');
 const logger = require('../../utils/logger');
 const { socketConnections } = require('../../utils/metrics');
 
@@ -225,6 +226,16 @@ async function handleConnection(socket, io, notifyChange) {
         }
 
         try {
+            // Optimization: Check Redis flag first to avoid DB query if no commands
+            const cacheKey = `commands:pending:${targetDeviceId}`;
+            const hasPending = await pubClient.get(cacheKey);
+
+            // If cache says '0', we know for sure there are no pending commands
+            if (hasPending === '0') {
+                if (ack) ack(JSON.stringify([]));
+                return;
+            }
+
             const commands = await prisma.deviceCommand.findMany({
                 where: {
                     device_id: targetDeviceId,
@@ -233,7 +244,7 @@ async function handleConnection(socket, io, notifyChange) {
                 orderBy: {
                     created_at: 'asc'
                 },
-                take: 10 // Limit results to prevent overwhelming
+                take: 10
             });
 
             const formattedCommands = commands.map(cmd => ({
@@ -245,9 +256,15 @@ async function handleConnection(socket, io, notifyChange) {
                 created_at: cmd.created_at
             }));
 
+            // Cache result to avoid next DB hit
+            if (formattedCommands.length === 0) {
+                await pubClient.set(cacheKey, '0', 'EX', 60); // Cache "no commands" for 60s
+            } else {
+                await pubClient.set(cacheKey, '1', 'EX', 3600); // Flag "has commands"
+            }
+
             if (ack) ack(JSON.stringify(formattedCommands));
         } catch (err) {
-            // Log as debug to avoid noise, as this poll happens frequently
             logger.debug(`❌ Silent error fetching commands for ${targetDeviceId}: ${err.message}`);
             if (ack) ack(JSON.stringify([]));
         }
