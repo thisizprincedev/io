@@ -32,7 +32,7 @@ function setupAuthMiddleware(io) {
             return next();
         }
 
-        logger.warn({ device_id: deviceId, ip: socket.handshake.address, hasSignature: !!signature }, '❌ Unauthorized socket connection attempt');
+        logger.warn({ device_id: deviceId, ip: socket.handshake.address }, '❌ Unauthorized socket connection attempt');
         return next(new Error('Authentication failed'));
     });
 }

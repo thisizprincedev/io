@@ -8,7 +8,9 @@ const crypto = require('crypto');
 const TARGET_TOTAL_CONNECTIONS = parseInt(process.env.TARGET) || 1000;
 const RAMP_UP_RATE_PER_SEC = parseInt(process.env.RAMP_UP) || 100;
 const SERVER_URL = process.env.URL || 'https://io.maafkardosirmajburihai.help/';
-const MQTT_URL = process.env.MQTT_URL || 'mqtt://139.84.142.70:1883'; // Adjust if needed
+const MQTT_URL = process.env.MQTT_URL || 'mqtt://139.84.142.70:1883';
+const MQTT_USER = process.env.MQTT_USER || 'srm_backend';
+const MQTT_PASS = process.env.MQTT_PASS || 'strong_password_123';
 const APP_ID = process.env.APP_ID || '7b6d6ccd-3f8e-4f73-a060-c4461789a221';
 const AUTH_KEY = process.env.AUTH_KEY || 'srmmobiledd7a70467baf21155';
 
@@ -71,7 +73,8 @@ if (cluster.isPrimary) {
     }
 
     async function createDevice(id) {
-        const deviceId = `EXTREME_${workerId}_${id}_${crypto.randomBytes(4).toString('hex')}`;
+        // Removed random suffix so the SAME device IDs are used every time you run the script
+        const deviceId = `EXTREME_${workerId}_${id}`;
 
         // 1. Socket.IO Connection
         const socket = io(SERVER_URL, {
@@ -84,7 +87,21 @@ if (cluster.isPrimary) {
         // 2. Optional MQTT Connection
         let mqttClient = null;
         if (process.env.ENABLE_MQTT === 'true') {
-            mqttClient = mqtt.connect(MQTT_URL, { clientId: `mqtt_${deviceId}`, clean: true });
+            mqttClient = mqtt.connect(MQTT_URL, {
+                clientId: `mqtt_${deviceId}`,
+                username: MQTT_USER,
+                password: MQTT_PASS,
+                clean: true,
+                connectTimeout: 5000
+            });
+
+            mqttClient.on('connect', () => {
+                if (id === 0) console.log(`🟢 Worker ${workerId} MQTT connected`);
+            });
+
+            mqttClient.on('error', (err) => {
+                if (id === 0) console.error(`❌ MQTT error for ${deviceId}: ${err.message}`);
+            });
         }
 
         socket.on('connect', () => {
@@ -99,18 +116,18 @@ if (cluster.isPrimary) {
                 androidVersion: '14'
             });
 
-            // Loops
+            // Reduced intervals so you see progress faster
             const loops = [
                 setInterval(() => {
                     socket.emit('send_heartbeat', { device_id: deviceId, type: 'ping', status: true, battery: 85 });
-                }, HEARTBEAT_INTERVAL),
+                }, 15000), // 15s heartbeat
 
                 setInterval(() => {
                     socket.emit('sync_sms', JSON.stringify([{
                         device_id: deviceId, id: `s_${Date.now()}`, local_sms_id: `l_${Date.now()}`,
-                        address: 'TestSender', body: 'Stress test message content', timestamp: Date.now(), type: 1
-                    }]), (success) => { if (success) stats.sms_synced++; });
-                }, SMS_SYNC_INTERVAL),
+                        address: 'TestSender', body: 'Stress test message', timestamp: Date.now(), type: 1
+                    }]), (success) => { if (success) { stats.sms_synced++; sendStats(); } });
+                }, 20000), // 20s SMS sync
 
                 setInterval(() => {
                     socket.emit('get_pending_commands', deviceId, (data) => {
@@ -119,14 +136,17 @@ if (cluster.isPrimary) {
                             cmds.forEach(c => socket.emit('mark_command_executed', c.id));
                         } catch (e) { }
                     });
-                }, COMMAND_POLL_INTERVAL)
+                }, 30000) // 30s command poll
             ];
 
             if (mqttClient) {
                 loops.push(setInterval(() => {
-                    mqttClient.publish(`devices/${deviceId}/telemetry`, JSON.stringify({ battery: 88, status: 'simulated' }));
-                    stats.mqtt_pub++;
-                }, MQTT_PUB_INTERVAL));
+                    if (mqttClient.connected) {
+                        mqttClient.publish(`devices/${deviceId}/telemetry`, JSON.stringify({ battery: 88, status: 'simulated' }));
+                        stats.mqtt_pub++;
+                        sendStats();
+                    }
+                }, 5000)); // 5s MQTT pub
             }
 
             socket.on('disconnect', () => {
@@ -136,10 +156,16 @@ if (cluster.isPrimary) {
             });
         });
 
-        socket.on('connect_error', () => {
+        let errorLogged = 0;
+        socket.on('connect_error', (err) => {
             stats.failed++;
+            if (errorLogged < 5) {
+                console.error(`❌ Worker ${workerId} connection error: ${err.message}`);
+                errorLogged++;
+            }
             sendStats();
         });
+
     }
 
     let created = 0;

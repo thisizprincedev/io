@@ -8,6 +8,7 @@ function configureSocket(server) {
             methods: ["GET", "POST"]
         },
         adapter: createRedisAdapter(),
+        allowEIO3: true,
         transports: ['polling', 'websocket'], // Allow both for better compatibility
         perMessageDeflate: false,    // Reduce CPU/Memory per connection
         pingTimeout: 60000,
