@@ -45,8 +45,29 @@ async function isOnline(deviceId) {
     }
 }
 
+/**
+ * Get multiple device statuses at once
+ */
+async function getStatuses(deviceIds) {
+    if (!deviceIds || deviceIds.length === 0) return {};
+    try {
+        const keys = deviceIds.map(id => `${PRESENCE_KEY_PREFIX}${id}`);
+        const results = await redis.mget(...keys);
+
+        const statuses = {};
+        deviceIds.forEach((id, index) => {
+            statuses[id] = results[index] === '1';
+        });
+        return statuses;
+    } catch (err) {
+        logger.error(err, '[PresenceService] Failed to get batch statuses:');
+        return {};
+    }
+}
+
 module.exports = {
     markOnline,
     markOffline,
-    isOnline
+    isOnline,
+    getStatuses
 };

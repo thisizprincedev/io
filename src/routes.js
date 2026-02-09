@@ -1,4 +1,5 @@
 const logger = require('../utils/logger');
+const presenceService = require('./services/PresenceService');
 
 // BigInt serialization hack for JSON.stringify
 BigInt.prototype.toJSON = function () { return this.toString() };
@@ -19,7 +20,17 @@ function setupRoutes(app, prisma, io, notifyChange) {
                 where: appId ? { app_id: appId } : {},
                 orderBy: { last_seen: 'desc' }
             });
-            res.json(devices);
+
+            // Merge real-time status from Redis
+            const deviceIds = devices.map(d => d.device_id);
+            const statuses = await presenceService.getStatuses(deviceIds);
+
+            const mergedDevices = devices.map(d => ({
+                ...d,
+                status: statuses[d.device_id] === true
+            }));
+
+            res.json(mergedDevices);
         } catch (error) {
             logger.error(`Error fetching devices:`, error);
             res.status(500).json({ error: error.message });
@@ -39,7 +50,9 @@ function setupRoutes(app, prisma, io, notifyChange) {
                 return res.status(403).json({ error: 'Forbidden: Device belongs to another app' });
             }
 
-            res.json(device);
+            // Merge real-time status from Redis
+            const isOnline = await presenceService.isOnline(deviceId);
+            res.json({ ...device, status: isOnline });
         } catch (error) {
             logger.error(`Error fetching device ${deviceId}:`, error);
             res.status(500).json({ error: error.message });
