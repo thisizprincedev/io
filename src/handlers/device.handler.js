@@ -2,6 +2,7 @@ const { prisma } = require('../config/database');
 const { pubClient } = require('../config/redis');
 const logger = require('../../utils/logger');
 const { socketConnections } = require('../../utils/metrics');
+const presenceService = require('../services/PresenceService');
 
 const getVal = (obj, key1, key2) => {
     if (!obj) return undefined;
@@ -80,6 +81,9 @@ async function handleConnection(socket, io, notifyChange) {
         socket.join(`device:${deviceId}`);
         logger.info({ deviceId }, '📍 Device joined room');
 
+        // Update Redis Presence
+        presenceService.markOnline(deviceId);
+
         // Queue device online status update
         // const current = deviceUpdateBuffer.get(deviceId) || {};
         // deviceUpdateBuffer.set(deviceId, {
@@ -96,15 +100,9 @@ async function handleConnection(socket, io, notifyChange) {
         socketConnections.dec();
         logger.info({ socket: socket.id }, '🔌 Socket disconnected');
 
-        // if (deviceId) {
-        //     const current = deviceUpdateBuffer.get(deviceId) || {};
-        //     deviceUpdateBuffer.set(deviceId, {
-        //         ...current,
-        //         status: false,
-        //         last_seen: new Date()
-        //     });
-        //     notifyChange('device_change', { device_id: deviceId, status: false, last_seen: new Date() });
-        // }
+        if (deviceId) {
+            presenceService.markOffline(deviceId);
+        }
     });
 
     // 2. Device Data Upsert (Initial or detailed update)

@@ -1,5 +1,6 @@
 const { prisma } = require('../config/database');
 const logger = require('../../utils/logger');
+const presenceService = require('../services/PresenceService');
 
 const getVal = (obj, key1, key2) => {
     if (!obj) return undefined;
@@ -286,6 +287,9 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 if (ack) ack(false);
                 return;
             }
+
+            // Update Redis Presence
+            presenceService.markOnline(deviceId);
 
             // Buffer heartbeat log
             heartbeatBuffer.push({

@@ -165,3 +165,99 @@
 {"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T20:52:50.164Z"}
 {"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T20:52:50.167Z"}
 {"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T20:52:50.170Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:02:50.736Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:02:50.821Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:02:50.821Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:02:50.821Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:02:50.821Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:12:51.421Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:12:51.422Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:12:51.434Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:12:51.434Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:12:51.434Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:22:51.842Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:22:51.859Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:22:51.863Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:22:51.868Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:22:51.962Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:32:52.445Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:32:52.445Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:32:52.446Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:32:52.555Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:32:52.560Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:42:53.112Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:42:53.112Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:42:53.112Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:42:53.113Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:42:53.112Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:52:53.747Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:52:53.753Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:52:53.756Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:52:53.756Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T21:52:53.756Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:02:54.263Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:02:54.263Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:02:54.264Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:02:54.314Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:02:54.318Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:12:54.840Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:12:54.843Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:12:54.861Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:12:54.864Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:12:54.869Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:22:55.410Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:22:55.410Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:22:55.411Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:22:55.410Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:22:55.413Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:51.251Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:51.251Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:51.251Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:51.251Z"}
+{"level":"info","message":"🚀 Worker 21356 listening on port 3002","timestamp":"2026-02-09T22:23:51.251Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-09T22:23:51.252Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:51.415Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:51.415Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:51.415Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:51.415Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:51.415Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:51.512Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:51.512Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:51.512Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:51.513Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:51.513Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-09T22:23:51.941Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:52.734Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:52.734Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:52.734Z"}
+{"level":"info","message":"🚀 Worker 21490 listening on port 3002","timestamp":"2026-02-09T22:23:52.733Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:52.734Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-09T22:23:52.735Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:52.897Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:52.897Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:52.898Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:52.901Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:52.903Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:52.903Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:52.919Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:52.921Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:52.925Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:52.926Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-09T22:23:53.097Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:54.719Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:54.719Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:54.719Z"}
+{"level":"info","message":"🚀 Worker 21612 listening on port 3002","timestamp":"2026-02-09T22:23:54.718Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-09T22:23:54.720Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T22:23:54.720Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:54.882Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:54.882Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:54.882Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:54.883Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:54.889Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:54.906Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:54.908Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:54.908Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:23:54.909Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:23:54.909Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-09T22:23:55.055Z"}
