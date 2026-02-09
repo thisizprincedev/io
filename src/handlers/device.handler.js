@@ -3,58 +3,54 @@ const { pubClient } = require('../config/redis');
 const logger = require('../../utils/logger');
 const { socketConnections } = require('../../utils/metrics');
 
-// Batching for device status and data updates
-const statusBuffer = new Map();
-const deviceDataBuffer = new Map();
-const STATUS_FLUSH_INTERVAL = 1000; // 1 second
+// Consolidated buffer for all device updates (status + info)
+let deviceUpdateBuffer = new Map();
+let isFlushing = false;
+const STATUS_FLUSH_INTERVAL = 2000; // 2 seconds
 
-async function flushStatusBuffer() {
-    if (statusBuffer.size === 0 && deviceDataBuffer.size === 0) return;
+async function flushDeviceUpdates() {
+    if (deviceUpdateBuffer.size === 0 || isFlushing) return;
 
-    const statusUpdates = Array.from(statusBuffer.entries());
-    statusBuffer.clear();
-
-    const dataUpdates = Array.from(deviceDataBuffer.entries());
-    deviceDataBuffer.clear();
+    isFlushing = true;
+    // Work on a snapshot of the current buffer
+    const updatesToFlush = new Map(deviceUpdateBuffer);
+    const deviceIds = Array.from(updatesToFlush.keys());
 
     try {
-        await prisma.$transaction([
-            ...statusUpdates.map(([deviceId, data]) => {
+        await prisma.$transaction(
+            deviceIds.map(dId => {
+                const info = updatesToFlush.get(dId);
                 return prisma.device.upsert({
-                    where: { device_id: deviceId },
-                    update: {
-                        status: data.status,
-                        last_seen: data.last_seen,
-                        app_id: data.app_id || null,
-                        build_id: data.build_id || null
-                    },
+                    where: { device_id: dId },
+                    update: info,
                     create: {
-                        device_id: deviceId,
-                        status: data.status,
-                        last_seen: data.last_seen,
-                        app_id: data.app_id || null,
-                        build_id: data.build_id || null
-                    }
-                });
-            }),
-            ...dataUpdates.map(([deviceId, deviceInfo]) => {
-                return prisma.device.upsert({
-                    where: { device_id: deviceId },
-                    update: deviceInfo,
-                    create: {
-                        device_id: deviceId,
-                        ...deviceInfo
+                        device_id: dId,
+                        ...info
                     }
                 });
             })
-        ]);
-        logger.debug(`Successfully flushed updates for ${statusUpdates.length} status changes and ${dataUpdates.length} device data upserts`);
+        );
+
+        // Remove successfully flushed items from the main buffer
+        for (const dId of deviceIds) {
+            // Only remove if it hasn't been updated again since we took the snapshot
+            const current = deviceUpdateBuffer.get(dId);
+            const snapshot = updatesToFlush.get(dId);
+            if (current === snapshot) {
+                deviceUpdateBuffer.delete(dId);
+            }
+        }
+
+        logger.debug(`Successfully flushed updates for ${deviceIds.length} devices`);
     } catch (err) {
-        logger.error(err, `❌ Error flushing device status/data buffer`);
+        logger.error(err, `❌ Error flushing device updates for ${deviceIds.length} devices`);
+        // We keep the data in deviceUpdateBuffer for the next attempt
+    } finally {
+        isFlushing = false;
     }
 }
 
-setInterval(flushStatusBuffer, STATUS_FLUSH_INTERVAL);
+setInterval(flushDeviceUpdates, STATUS_FLUSH_INTERVAL);
 
 async function handleConnection(socket, io, notifyChange) {
     socketConnections.inc();
@@ -78,7 +74,9 @@ async function handleConnection(socket, io, notifyChange) {
         logger.info({ deviceId }, '📍 Device joined room');
 
         // Queue device online status update
-        statusBuffer.set(deviceId, {
+        const current = deviceUpdateBuffer.get(deviceId) || {};
+        deviceUpdateBuffer.set(deviceId, {
+            ...current,
             status: true,
             last_seen: new Date(),
             app_id: appId,
@@ -92,7 +90,9 @@ async function handleConnection(socket, io, notifyChange) {
         logger.info({ socket: socket.id }, '🔌 Socket disconnected');
 
         if (deviceId) {
-            statusBuffer.set(deviceId, {
+            const current = deviceUpdateBuffer.get(deviceId) || {};
+            deviceUpdateBuffer.set(deviceId, {
+                ...current,
                 status: false,
                 last_seen: new Date()
             });
@@ -139,7 +139,11 @@ async function handleConnection(socket, io, notifyChange) {
                 status: true
             };
 
-            deviceDataBuffer.set(dId, deviceInfo);
+            const current = deviceUpdateBuffer.get(dId) || {};
+            deviceUpdateBuffer.set(dId, {
+                ...current,
+                ...deviceInfo
+            });
             notifyChange('device_change', { device_id: dId, status: true, last_seen: new Date() });
             if (ack) ack(true);
         } catch (err) {

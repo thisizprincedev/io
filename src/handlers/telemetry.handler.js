@@ -23,30 +23,50 @@ const heartbeatBuffer = [];
 const deviceUpdateBuffer = new Map();
 const HEARTBEAT_FLUSH_INTERVAL = 2000; // 2 seconds for heartbeats
 
+let isFlushing = false;
 async function flushHeartbeats() {
-    if (heartbeatBuffer.length === 0 && deviceUpdateBuffer.size === 0) return;
+    if ((heartbeatBuffer.length === 0 && deviceUpdateBuffer.size === 0) || isFlushing) return;
 
-    const heartbeats = [...heartbeatBuffer];
-    heartbeatBuffer.length = 0;
-
-    const updates = Array.from(deviceUpdateBuffer.entries());
-    deviceUpdateBuffer.clear();
+    isFlushing = true;
+    const heartbeatsToFlush = [...heartbeatBuffer];
+    const updatesToFlush = new Map(deviceUpdateBuffer);
+    const updateIds = Array.from(updatesToFlush.keys());
 
     try {
         await prisma.$transaction([
-            ...(heartbeats.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeats })] : []),
-            ...updates.map(([dId, data]) => prisma.device.update({
-                where: { device_id: dId },
-                data: {
-                    last_seen: data.last_seen,
-                    status: data.status,
-                    heartbeat: data.heartbeat
-                }
-            }))
+            ...(heartbeatsToFlush.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeatsToFlush })] : []),
+            ...updateIds.map(dId => {
+                const data = updatesToFlush.get(dId);
+                return prisma.device.upsert({
+                    where: { device_id: dId },
+                    update: {
+                        last_seen: data.last_seen,
+                        status: data.status,
+                        heartbeat: data.heartbeat
+                    },
+                    create: {
+                        device_id: dId,
+                        last_seen: data.last_seen,
+                        status: data.status,
+                        heartbeat: data.heartbeat
+                    }
+                });
+            })
         ]);
-        logger.debug(`Successfully flushed ${heartbeats.length} heartbeats and ${updates.length} device updates`);
+
+        // Remove successfully flushed items
+        heartbeatBuffer.splice(0, heartbeatsToFlush.length);
+        for (const dId of updateIds) {
+            if (deviceUpdateBuffer.get(dId) === updatesToFlush.get(dId)) {
+                deviceUpdateBuffer.delete(dId);
+            }
+        }
+
+        logger.debug(`Successfully flushed ${heartbeatsToFlush.length} heartbeats and ${updateIds.length} device updates`);
     } catch (err) {
-        logger.error(err, `❌ Error flushing heartbeats`);
+        logger.error(err, `❌ Error flushing heartbeats/telemetry updates`);
+    } finally {
+        isFlushing = false;
     }
 }
 
