@@ -5,15 +5,16 @@ function configureSocket(server) {
     const io = socketIo(server, {
         cors: {
             origin: "*",
-            methods: ["GET", "POST"]
+            methods: ["GET", "POST"],
+            credentials: true
         },
         adapter: createRedisAdapter(),
         allowEIO3: true,
-        transports: ['polling', 'websocket'], // Allow both for better compatibility
+        transports: ['websocket', 'polling'], // Prioritize websocket
         perMessageDeflate: false,    // Reduce CPU/Memory per connection
         pingTimeout: 60000,
         pingInterval: 25000,
-        maxHttpBufferSize: 1e7,
+        maxHttpBufferSize: 1e8,      // 100MB
         cleanupEmptyChildNamespaces: true
     });
 

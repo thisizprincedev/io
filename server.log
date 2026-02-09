@@ -1,0 +1,40 @@
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T14:58:28.312Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-09T14:58:28.312Z"}
+{"level":"info","message":"🚀 Worker 94873 listening on port 3002","timestamp":"2026-02-09T14:58:28.312Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-09T14:58:28.314Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T14:58:28.521Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T14:58:28.521Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T14:58:28.521Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T14:58:28.522Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T14:58:28.538Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T14:58:28.540Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-09T14:58:29.388Z"}
+{"level":"info","message":"🚀 Worker 94990 listening on port 3002","timestamp":"2026-02-09T14:58:55.602Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-09T14:58:55.604Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T14:58:55.766Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T14:58:55.766Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-09T14:58:57.326Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-09T15:03:17.337Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-09T15:03:17.337Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-09T15:03:17.338Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T15:03:17.621Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T15:03:17.625Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T15:03:17.625Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T15:03:17.630Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T15:03:17.630Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T15:03:17.631Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-09T15:03:17.859Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-09T15:03:17.859Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-09T15:03:17.859Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-09T15:03:17.861Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-09T15:03:17.862Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-09T15:03:17.860Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-09T15:03:17.861Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-09T15:03:17.861Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-09T15:03:17.861Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T15:03:25.580Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T15:03:25.580Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T15:03:25.582Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T15:03:25.582Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T15:03:25.582Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T15:03:25.592Z"}
