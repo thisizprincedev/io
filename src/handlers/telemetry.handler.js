@@ -82,9 +82,13 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
             let messages = typeof data === 'string' ? JSON.parse(data) : data;
             if (!Array.isArray(messages)) messages = [messages];
 
-            const suspicious = messages.some(msg => (msg.device_id || msg.deviceId) !== deviceId);
-            if (suspicious) {
-                logger.warn(`⚠️ Security Alert: Device ${deviceId} attempted to sync SMS for other devices`);
+            const suspicious = messages.some(msg => {
+                const mId = getVal(msg, 'device_id', 'deviceId');
+                return mId !== deviceId;
+            });
+
+            if (suspicious || !deviceId) {
+                logger.warn({ socketDeviceId: deviceId, sampleId: getVal(messages[0], 'device_id', 'deviceId') }, `⚠️ Security Alert: Device attempted to sync SMS for other devices or missing session deviceId`);
                 if (ack) ack(false);
                 return;
             }

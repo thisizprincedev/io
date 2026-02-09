@@ -3,6 +3,13 @@ const { pubClient } = require('../config/redis');
 const logger = require('../../utils/logger');
 const { socketConnections } = require('../../utils/metrics');
 
+const getVal = (obj, key1, key2) => {
+    if (!obj) return undefined;
+    if (obj[key1] !== undefined && obj[key1] !== null) return obj[key1];
+    if (key2 && obj[key2] !== undefined && obj[key2] !== null) return obj[key2];
+    return undefined;
+};
+
 // Consolidated buffer for all device updates (status + info)
 let deviceUpdateBuffer = new Map();
 let isFlushing = false;
@@ -105,16 +112,15 @@ async function handleConnection(socket, io, notifyChange) {
         try {
             const data = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
 
-            const getVal = (obj, key1, key2) => {
-                if (!obj) return undefined;
-                if (obj[key1] !== undefined && obj[key1] !== null) return obj[key1];
-                if (key2 && obj[key2] !== undefined && obj[key2] !== null) return obj[key2];
-                return undefined;
-            };
-
             const dId = getVal(data, 'device_id', 'deviceId') || deviceId;
             if (dId !== deviceId && !socket.isAdmin) {
-                logger.warn({ deviceId, attemptedDeviceId: dId }, '⚠️ Security Alert: Unauthorized device data upsert attempt');
+                logger.warn({ socketDeviceId: deviceId, payloadDeviceId: dId }, '⚠️ Security Alert: Unauthorized device data upsert attempt (ID mismatch)');
+                if (ack) ack(false);
+                return;
+            }
+
+            if (!dId) {
+                logger.warn({ socketId: socket.id }, '⚠️ Unauthorized device data upsert attempt (Missing deviceId)');
                 if (ack) ack(false);
                 return;
             }
