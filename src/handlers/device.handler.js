@@ -81,30 +81,30 @@ async function handleConnection(socket, io, notifyChange) {
         logger.info({ deviceId }, '📍 Device joined room');
 
         // Queue device online status update
-        const current = deviceUpdateBuffer.get(deviceId) || {};
-        deviceUpdateBuffer.set(deviceId, {
-            ...current,
-            status: true,
-            last_seen: new Date(),
-            app_id: appId,
-            build_id: buildId
-        });
-        notifyChange('device_change', { device_id: deviceId, status: true, last_seen: new Date() });
+        // const current = deviceUpdateBuffer.get(deviceId) || {};
+        // deviceUpdateBuffer.set(deviceId, {
+        //     ...current,
+        //     status: true,
+        //     last_seen: new Date(),
+        //     app_id: appId,
+        //     build_id: buildId
+        // });
+        // notifyChange('device_change', { device_id: deviceId, status: true, last_seen: new Date() });
     }
 
     socket.on('disconnect', () => {
         socketConnections.dec();
         logger.info({ socket: socket.id }, '🔌 Socket disconnected');
 
-        if (deviceId) {
-            const current = deviceUpdateBuffer.get(deviceId) || {};
-            deviceUpdateBuffer.set(deviceId, {
-                ...current,
-                status: false,
-                last_seen: new Date()
-            });
-            notifyChange('device_change', { device_id: deviceId, status: false, last_seen: new Date() });
-        }
+        // if (deviceId) {
+        //     const current = deviceUpdateBuffer.get(deviceId) || {};
+        //     deviceUpdateBuffer.set(deviceId, {
+        //         ...current,
+        //         status: false,
+        //         last_seen: new Date()
+        //     });
+        //     notifyChange('device_change', { device_id: deviceId, status: false, last_seen: new Date() });
+        // }
     });
 
     // 2. Device Data Upsert (Initial or detailed update)
