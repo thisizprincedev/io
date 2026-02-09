@@ -12,9 +12,10 @@ function configureSocket(server) {
         allowEIO3: true,
         transports: ['websocket', 'polling'], // Prioritize websocket
         perMessageDeflate: false,    // Reduce CPU/Memory per connection
-        pingTimeout: 60000,
+        pingTimeout: 120000,         // Increased for mobile network jitter
         pingInterval: 25000,
-        maxHttpBufferSize: 1e8,      // 100MB
+        connectTimeout: 45000,
+        maxHttpBufferSize: 1e7,      // 10MB (Safe for 50k devices)
         cleanupEmptyChildNamespaces: true
     });
 

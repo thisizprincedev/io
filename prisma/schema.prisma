@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgresql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
@@ -50,6 +50,9 @@ model Device {
   app_id             String?
   heartbeat          Json?
 
+  @@index([status])
+  @@index([last_seen])
+  @@index([app_id])
   @@map("devices")
 }
 
@@ -62,6 +65,7 @@ model Heartbeat {
   updated_at  DateTime? @default(now()) @db.Timestamptz
   device      Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
+  @@index([last_update])
   @@map("heartbeat")
 }
 
@@ -112,6 +116,7 @@ model SmsMessage {
   updated_at  DateTime? @default(now()) @db.Timestamptz
   device      Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
 
+  @@index([address])
   @@id([device_id, local_sms_id])
   @@map("sms_messages")
 }
