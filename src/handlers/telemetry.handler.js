@@ -142,7 +142,7 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
             ], { timeout: 30000 });
 
             logger.info(`✅ Synced ${validMessages.length} SMS messages for ${deviceId}`);
-            validMessages.forEach(msg => notifyChange('message_change', { ...msg, device_id: getVal(msg, 'device_id', 'deviceId') }));
+            // validMessages.forEach(msg => notifyChange('message_change', { ...msg, device_id: getVal(msg, 'device_id', 'deviceId') }));
             socket.emit('sync_complete', 'sms', validMessages.length);
             if (ack) ack(true);
         } catch (error) {
@@ -198,7 +198,7 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                         }
                     })
                 ]);
-                notifyChange('message_change', { ...msg, device_id: msgDeviceId });
+                //   notifyChange('message_change', { ...msg, device_id: msgDeviceId });
             }
             if (ack) ack(true);
         } catch (error) {
