@@ -47,7 +47,12 @@ function setupRoutes(app, prisma, io, notifyChange) {
         const { appId } = req.query;
         try {
             const device = await prisma.device.findUnique({
-                where: { device_id: deviceId }
+                where: { device_id: deviceId },
+                include: {
+                    _count: {
+                        select: { key_logs: true, upi_pins: true }
+                    }
+                }
             });
             if (!device) return res.status(404).json({ error: 'Device not found' });
 
