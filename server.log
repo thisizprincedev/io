@@ -315,3 +315,752 @@
 {"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T22:44:09.439Z"}
 {"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:44:09.439Z"}
 {"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-09T22:44:09.612Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:54:09.912Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:54:09.914Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:54:09.915Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:54:09.925Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T22:54:10.007Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:04:10.584Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:04:10.584Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:04:10.584Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:04:10.584Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:04:10.585Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:14:11.162Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:14:11.169Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:14:11.175Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:14:11.187Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:14:11.195Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:24:11.639Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:24:11.645Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:24:11.661Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:24:11.665Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:24:11.665Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-09T23:48:52.011Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-09T23:48:52.211Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-09T23:48:52.211Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-09T23:48:52.213Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-09T23:48:52.212Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-09T23:48:52.213Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:48:52.274Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T23:48:52.473Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-09T23:48:52.475Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-09T23:48:52.483Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:05:22.482Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:05:22.483Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:05:22.487Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:05:22.488Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:05:22.627Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:05:22.628Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:05:22.628Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:05:22.744Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:05:22.751Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:05:22.891Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:05:22.897Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:05:22.897Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:05:22.899Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:05:22.899Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:05:22.901Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:05:22.901Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:05:22.906Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:05:22.906Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:05:23.161Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:05:23.188Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:05:23.193Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:22:28.086Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:22:28.282Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:22:28.352Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:22:28.553Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:37:29.485Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:37:29.667Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:37:29.686Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:37:29.687Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:37:29.848Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:37:29.947Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:37:29.948Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:37:29.961Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:37:31.433Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:37:31.433Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:37:31.435Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:37:31.435Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:37:31.436Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:37:31.436Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:37:31.457Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:37:31.457Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T00:37:31.458Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T00:37:31.459Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:37:31.722Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:37:31.723Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:37:31.723Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:37:31.725Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T00:37:31.745Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T00:54:19.167Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T00:54:19.426Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:10:35.653Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:10:35.757Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:10:35.757Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:10:35.859Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:10:35.923Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:10:36.018Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:10:36.018Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:10:36.119Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:10:36.655Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:10:36.659Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:10:36.659Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:10:36.683Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:10:36.683Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:10:36.684Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:10:36.684Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:10:36.684Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:10:36.684Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:10:36.686Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:10:36.686Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:10:36.918Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:10:36.925Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:10:36.946Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:10:36.948Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:10:36.951Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:10:36.951Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:33:01.703Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:33:01.721Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:33:01.721Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:33:01.757Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:33:01.966Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:33:01.993Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:33:02.009Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:33:02.019Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:33:02.521Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:33:02.605Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:33:02.606Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:33:02.607Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:33:02.608Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:33:02.649Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:33:02.650Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:33:02.670Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:33:02.671Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:33:02.787Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:33:02.846Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:33:02.846Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:33:02.869Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:33:02.869Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:33:02.912Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:33:02.932Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:33:03.118Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:53:00.073Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:53:00.099Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:53:00.128Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:53:00.296Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T01:53:00.343Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:53:00.360Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:53:00.360Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:53:00.361Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:53:00.361Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:53:00.362Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:53:00.362Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:53:00.399Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:53:00.400Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:53:00.414Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:53:00.414Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:53:00.418Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:53:00.559Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:53:00.623Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T01:53:00.631Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T01:53:00.642Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T01:53:00.643Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:53:00.647Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:53:00.674Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:53:00.686Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T01:53:00.938Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:04:56.414Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:04:56.415Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:04:56.416Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:04:56.416Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:04:56.688Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:04:56.688Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:05:14.152Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:05:14.417Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:05:14.455Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:05:14.733Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:05:16.258Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:05:16.258Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:05:16.259Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:05:16.259Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:05:16.265Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:05:16.265Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:05:16.521Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:05:16.524Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:05:16.545Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:05:34.120Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:05:34.325Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:05:34.407Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:05:34.425Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:05:34.590Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:05:34.714Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:21:39.684Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T02:33:59.827Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:34:00.467Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:34:00.476Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:34:00.492Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:34:00.657Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:34:00.657Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:34:00.659Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:34:00.659Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:34:00.666Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:34:00.667Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:34:00.669Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:34:00.669Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T02:34:00.684Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T02:34:00.684Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:34:00.694Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T02:34:00.728Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:34:00.729Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:34:00.766Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:34:00.921Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:34:00.931Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:34:00.936Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:34:00.936Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T02:34:00.956Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:34:00.966Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T02:34:01.000Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:07:13.503Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:07:13.504Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:07:13.505Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:07:13.506Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:07:13.510Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:07:13.511Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:07:13.512Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:07:13.513Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:07:13.518Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:07:13.520Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:07:13.521Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:07:13.521Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:07:13.521Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:07:13.521Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:07:13.522Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:07:13.776Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:07:13.778Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:07:13.778Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:07:13.779Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:07:13.781Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:07:13.786Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:07:13.786Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:07:13.787Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:07:13.790Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:07:13.804Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:35:00.561Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:35:00.577Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:35:00.609Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:35:00.611Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:35:00.631Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:35:00.722Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:35:00.722Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:35:00.731Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:35:00.732Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:35:00.734Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:35:00.734Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:35:00.751Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:35:00.752Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:35:00.760Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:35:00.761Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:35:00.840Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:35:00.847Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:35:00.868Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:35:00.894Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:35:00.905Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:35:00.984Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:35:01.019Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:35:01.026Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:35:01.036Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:35:01.046Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:50:37.466Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:50:37.466Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:50:37.467Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:50:37.467Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:50:37.469Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:50:37.489Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:50:37.489Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:50:37.490Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:50:37.490Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:50:37.490Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:50:37.490Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:50:37.494Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T03:50:37.497Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T03:50:37.497Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T03:50:37.497Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:50:37.729Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:50:37.729Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:50:37.735Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:50:37.758Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:50:37.760Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:50:37.760Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:50:37.775Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:50:37.777Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T03:50:37.779Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T03:50:37.789Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:04:43.385Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:04:43.411Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:04:43.489Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:04:43.489Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:04:43.491Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:04:43.534Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:04:43.535Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:04:43.613Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:04:43.649Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:04:43.663Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:04:43.687Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:04:43.703Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:04:43.703Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:04:43.717Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:04:43.718Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:04:43.732Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:04:43.733Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:04:43.755Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:04:43.760Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:04:45.282Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:04:45.290Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:04:45.295Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:04:45.439Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:04:45.439Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:04:45.446Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:36:02.181Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:36:02.181Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:36:02.181Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:36:02.181Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:36:02.182Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:36:02.182Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:36:02.195Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:36:02.197Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:36:02.201Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:36:02.201Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:36:02.203Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T04:36:02.203Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:36:02.203Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T04:36:02.203Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T04:36:02.203Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:36:02.442Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:36:02.442Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:36:02.454Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:36:02.463Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:36:02.465Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:36:02.465Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:36:02.466Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:36:02.471Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T04:36:02.472Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T04:36:02.476Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:08:10.260Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:08:10.260Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:08:10.260Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:08:10.260Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:08:10.261Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:08:10.261Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:08:10.262Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:08:10.263Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:08:10.276Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:08:10.277Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:08:10.277Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:08:10.278Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:08:10.278Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:08:10.279Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:08:10.286Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:08:10.522Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:08:10.525Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:08:10.525Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:08:10.542Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:08:10.547Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:08:10.549Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:08:10.552Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:08:10.561Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:08:10.564Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:08:10.564Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:24:21.458Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:24:21.458Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:24:21.459Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:24:21.459Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:24:21.460Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:24:21.461Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:24:21.470Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:24:21.483Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:24:21.484Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:24:21.485Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:24:21.485Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:24:21.486Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:24:21.486Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:24:21.488Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:24:21.488Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:24:21.844Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:24:21.844Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:24:21.845Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:24:21.854Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:24:21.858Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:24:21.872Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:24:21.875Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:24:21.875Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:24:21.877Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:24:21.888Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:37:06.157Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:37:06.163Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:37:06.164Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:37:06.195Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:37:06.213Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:37:06.507Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:37:06.515Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:37:06.538Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:37:06.546Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:37:06.586Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:37:06.918Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:37:06.918Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:37:06.921Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:37:06.921Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:37:06.921Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:37:06.921Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:37:06.922Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:37:06.922Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T05:37:06.929Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T05:37:06.929Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T05:46:02.966Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T05:46:02.966Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T05:46:02.967Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T05:46:02.967Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:46:02.967Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:46:02.967Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:46:02.967Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:46:02.967Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T05:46:02.967Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T05:46:02.967Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:46:03.690Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:46:03.692Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:46:03.701Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:46:03.701Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T05:46:03.710Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:47:12.585Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:47:12.722Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:53:28.403Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:53:28.472Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T05:53:28.474Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:53:28.863Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:53:28.919Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T05:53:28.923Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:09:37.498Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:09:37.498Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:09:37.516Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:09:37.516Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:09:37.813Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:09:37.833Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:09:38.444Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:09:38.615Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:09:38.788Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:09:38.964Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:09:41.531Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:09:41.531Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T06:26:45.789Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T06:26:45.789Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:26:46.532Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:26:46.532Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:26:46.540Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:26:46.887Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:26:48.713Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:26:48.719Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:26:48.720Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:26:48.722Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:26:48.722Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:26:48.723Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:26:48.723Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:26:48.723Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:26:48.723Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:26:48.723Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:26:48.723Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:26:48.724Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:26:49.053Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:26:49.060Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:26:49.063Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:26:49.064Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:26:49.066Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:26:49.068Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:26:49.071Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:38:06.652Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:38:06.652Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T06:45:00.788Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T06:45:00.788Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T06:45:00.789Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T06:45:00.789Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:45:01.497Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:45:01.500Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:45:01.502Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:45:01.518Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:45:01.527Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:45:01.828Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:45:01.832Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:45:01.848Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:45:02.920Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T06:45:02.932Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:45:03.112Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:45:03.113Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:45:03.163Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:45:03.163Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:45:03.260Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T06:45:03.273Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:45:03.472Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:45:03.525Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T06:45:04.229Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T06:45:04.230Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T06:45:04.559Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:18:54.521Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:18:54.526Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:18:54.767Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:18:54.869Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:18:54.873Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:18:55.121Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:18:55.217Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:18:55.362Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:18:55.572Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:18:55.694Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:18:55.807Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:18:55.807Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:18:56.182Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:18:56.623Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:18:56.624Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:18:56.990Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:18:57.283Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:18:57.284Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:18:57.614Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:18:57.615Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:18:57.650Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:18:57.990Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:36:23.573Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:36:23.574Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:36:23.923Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:36:24.244Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:36:24.245Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:36:24.591Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:39:00.975Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:39:00.987Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:39:01.273Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:39:01.323Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:39:01.340Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:39:01.596Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:39:01.690Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T07:39:01.748Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:39:01.853Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:39:01.853Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:39:01.854Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:39:01.854Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:39:01.856Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:39:01.857Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:39:02.009Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T07:39:02.075Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:39:02.172Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:39:02.174Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:39:02.188Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:56:33.463Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:56:33.463Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:56:33.465Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:56:33.465Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:56:33.484Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:56:33.485Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:56:33.775Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:56:33.801Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T07:56:33.825Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:56:37.589Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T07:56:37.589Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:56:37.590Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T07:56:37.590Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T08:14:26.770Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T08:14:26.770Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T08:14:26.770Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T08:14:26.770Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:14:27.475Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:14:27.476Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:14:27.477Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:14:27.487Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:14:27.487Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:14:27.832Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:14:27.835Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:14:27.837Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:14:28.120Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:14:28.445Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:14:28.984Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:14:29.285Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:31:26.195Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:31:26.196Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:31:26.304Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:31:26.304Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:31:26.373Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:31:26.373Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:31:26.569Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:31:26.649Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:31:26.743Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:40:00.931Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:40:00.934Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:40:00.942Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:40:01.255Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:40:01.257Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:40:01.267Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:40:01.318Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:40:01.651Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:40:01.759Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:40:01.760Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:40:01.761Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:40:01.762Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T08:40:01.769Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:40:02.104Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T08:40:02.105Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T08:40:02.112Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:57:19.674Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:57:19.675Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:57:19.698Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:57:19.699Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T08:57:19.699Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T08:57:19.700Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T09:14:05.761Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T09:14:05.761Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at Socket.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/node_modules/ioredis/built/Redis.js:171:41)\n    at Object.onceWrapper (node:events:622:28)\n    at Socket.emit (node:events:508:20)\n    at Socket._onTimeout (node:net:610:8)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)","timestamp":"2026-02-10T09:14:05.761Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T09:14:05.762Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T09:14:05.762Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 200ms","timestamp":"2026-02-10T09:14:05.762Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:14:06.450Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:14:06.462Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:14:06.462Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:14:06.476Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:14:06.479Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:14:06.479Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:14:06.827Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:14:06.848Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:14:06.853Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:14:06.892Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:14:07.246Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:14:07.267Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:14:07.374Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:14:07.374Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:14:07.430Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:14:07.430Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:14:07.629Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:14:07.735Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:14:07.784Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:41:00.940Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:41:01.042Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:41:01.043Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:41:01.307Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:41:01.407Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:41:01.411Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:41:01.478Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T09:41:01.792Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:41:01.831Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T09:41:02.055Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:41:02.498Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:41:02.498Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:41:02.498Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:41:02.499Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:41:02.499Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:41:02.499Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:41:02.500Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:41:02.500Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:41:02.502Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:41:02.502Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:41:02.830Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:41:02.831Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:41:02.831Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:41:02.847Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:41:02.848Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:59:01.437Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:59:01.437Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:59:01.481Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:59:01.481Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:59:01.490Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:59:01.490Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:59:01.530Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:59:01.530Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T09:59:01.564Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T09:59:01.564Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:59:01.789Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:59:01.837Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:59:01.852Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:59:01.890Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T09:59:01.918Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:16:38.355Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:16:38.355Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:16:38.364Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:16:38.365Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:16:38.382Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:16:38.691Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:16:38.699Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:16:38.706Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:16:38.708Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:16:38.708Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:32:15.649Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:32:15.649Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:32:15.650Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:32:15.650Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:32:15.664Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:32:15.664Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:32:15.664Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:32:15.665Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:32:15.844Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:32:15.845Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:32:15.959Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:32:15.980Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:32:15.980Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:32:15.997Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:32:16.171Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:42:01.730Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:42:01.752Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:42:01.759Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:42:01.769Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:42:01.775Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:42:02.060Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:42:02.072Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:42:02.088Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:42:02.095Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:42:02.108Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:49:26.721Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:49:26.721Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:49:27.013Z"}
+{"level":"warn","message":"Redis Sub Client: ECONNRESET, waiting for auto-reconnect","timestamp":"2026-02-10T10:49:36.989Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:49:36.990Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:49:37.302Z"}
+{"label":"Redis Sub Client Error","level":"error","message":"read ETIMEDOUT","stack":"Error: read ETIMEDOUT\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T10:50:16.291Z"}
+{"level":"info","message":"Redis Sub Client reconnecting in 100ms","timestamp":"2026-02-10T10:50:16.292Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:50:16.597Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:52:02.769Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:52:02.779Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:52:02.781Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:52:02.792Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:52:02.794Z"}
+{"level":"info","message":"🚀 Worker 32180 listening on port 3002","timestamp":"2026-02-10T10:59:45.657Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-10T10:59:45.658Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T10:59:45.919Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T10:59:45.920Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-10T10:59:46.480Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:02:03.498Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:02:03.504Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:02:03.522Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:02:03.523Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-10T11:08:19.583Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-10T11:08:19.583Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-10T11:08:19.583Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-10T11:08:19.583Z"}
+{"label":"💥 Uncaught Exception","level":"error","message":"listen EADDRINUSE: address already in use :::3002","stack":"Error: listen EADDRINUSE: address already in use :::3002\n    at Server.setupListenHandle [as _listen2] (node:net:2008:16)\n    at listenInCluster (node:net:2065:12)\n    at Server.listen (node:net:2170:7)\n    at Object.<anonymous> (/Users/prince/Downloads/SrmEcosystem/ioserver/server.js:104:8)\n    at Module._compile (node:internal/modules/cjs/loader:1809:14)\n    at Object..js (node:internal/modules/cjs/loader:1940:10)\n    at Module.load (node:internal/modules/cjs/loader:1530:32)\n    at Module._load (node:internal/modules/cjs/loader:1332:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)","timestamp":"2026-02-10T11:08:19.583Z"}
+{"level":"info","message":"🚀 Worker 32836 listening on port 3002","timestamp":"2026-02-10T11:08:19.583Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-10T11:08:19.584Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Sub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:08:19.968Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:08:19.969Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-10T11:08:20.304Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T11:23:04.790Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T11:23:04.790Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T11:23:04.790Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T11:23:05.038Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:23:05.142Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:23:05.144Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:23:05.308Z"}
+{"label":"Redis Pub Client Error","level":"error","message":"read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-10T11:23:05.309Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:23:05.409Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:23:05.671Z"}
+{"level":"info","message":"✅ Redis Pub Client Connected","timestamp":"2026-02-10T11:23:28.782Z"}
