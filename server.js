@@ -81,7 +81,6 @@ const termShutdown = async (signal) => {
     try {
         await prisma.$disconnect();
         pubClient.quit();
-        subClient.quit();
         server.close(() => {
             logger.info('✅ Server closed. Exiting.');
             process.exit(0);

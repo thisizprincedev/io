@@ -10,12 +10,12 @@ function configureSocket(server) {
         },
         adapter: createRedisAdapter(),
         allowEIO3: true,
-        transports: ['websocket', 'polling'], // Prioritize websocket
+        transports: ['websocket'], // Force websocket only for 1M scale performance
         perMessageDeflate: false,    // Reduce CPU/Memory per connection
-        pingTimeout: 120000,         // Increased for mobile network jitter
-        pingInterval: 25000,
-        connectTimeout: 45000,
-        maxHttpBufferSize: 1e7,      // 10MB (Safe for 50k devices)
+        pingTimeout: 60000,          // Balanced for high-concurrency (1m)
+        pingInterval: 10000,         // Faster detection of dead connections
+        connectTimeout: 30000,
+        maxHttpBufferSize: 1e6,      // 1MB (Reduces memory risk per client)
         cleanupEmptyChildNamespaces: true
     });
 
