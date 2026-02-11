@@ -2643,3 +2643,52 @@
 {"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T20:58:37.758Z"}
 {"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T20:58:38.010Z"}
 {"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T20:58:38.134Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-11T21:11:34.057Z"}
+{"level":"info","message":"✅ Server closed. Exiting.","timestamp":"2026-02-11T21:11:34.063Z"}
+{"level":"info","message":"🚀 Worker 32161 listening on port 3002","timestamp":"2026-02-11T21:12:37.308Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T21:12:37.310Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T21:12:37.572Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T21:12:37.637Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-11T22:36:58.477Z"}
+{"level":"info","message":"✅ Server closed. Exiting.","timestamp":"2026-02-11T22:36:58.484Z"}
+{"level":"info","message":"🚀 Worker 37880 listening on port 3002","timestamp":"2026-02-11T22:37:07.903Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T22:37:07.905Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T22:37:08.218Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T22:37:08.301Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-11T23:04:17.037Z"}
+{"level":"info","message":"✅ Server closed. Exiting.","timestamp":"2026-02-11T23:04:17.045Z"}
+{"level":"info","message":"🚀 Worker 39784 listening on port 3002","timestamp":"2026-02-11T23:04:21.951Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:04:21.953Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:04:22.212Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:04:22.283Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-11T23:25:31.869Z"}
+{"level":"info","message":"✅ Server closed. Exiting.","timestamp":"2026-02-11T23:25:31.876Z"}
+{"level":"info","message":"🚀 Worker 40778 listening on port 3002","timestamp":"2026-02-11T23:25:33.280Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:25:33.281Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:25:33.486Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:25:33.947Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-11T23:25:34.126Z"}
+{"level":"info","message":"✅ Server closed. Exiting.","timestamp":"2026-02-11T23:25:34.132Z"}
+{"level":"info","message":"🚀 Worker 40984 listening on port 3002","timestamp":"2026-02-11T23:25:39.026Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:25:39.032Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:25:39.153Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:25:39.388Z"}
+{"ip":"::1","label":"❌ Unauthorized HTTP API access attempt (Blocked Mobile App or Rogue access)","level":"warn","message":"Warning event","path":"/devices","timestamp":"2026-02-11T23:42:56.513Z"}
+{"level":"info","message":"🚀 Worker 43458 listening on port 3002","timestamp":"2026-02-11T23:43:18.653Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:43:18.654Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:43:18.846Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:43:19.007Z"}
+{"level":"info","message":"🚀 Worker 44446 listening on port 3002","timestamp":"2026-02-11T23:44:12.854Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:44:12.855Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:44:13.042Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:44:13.258Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","signal":"SIGINT","timestamp":"2026-02-11T23:47:49.316Z"}
+{"level":"info","message":"✅ Server closed. Exiting.","timestamp":"2026-02-11T23:47:49.322Z"}
+{"level":"info","message":"🚀 Worker 45427 listening on port 3002","timestamp":"2026-02-11T23:47:50.271Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:47:50.272Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:47:51.403Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:47:51.941Z"}
+{"level":"info","message":"🚀 Worker 45914 listening on port 3002","timestamp":"2026-02-11T23:50:50.367Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-11T23:50:50.369Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-11T23:50:50.602Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-11T23:50:50.768Z"}
