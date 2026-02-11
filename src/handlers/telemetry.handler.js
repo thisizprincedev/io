@@ -31,13 +31,23 @@ async function flushHeartbeats() {
     isFlushing = true;
     const heartbeatsToFlush = [...heartbeatBuffer];
     const updatesToFlush = new Map(deviceUpdateBuffer);
-    const updateIds = Array.from(updatesToFlush.keys());
+
+    // Get all unique device IDs from both buffers to ensure they exist in DB
+    const allDeviceIds = new Set([
+        ...updatesToFlush.keys(),
+        ...heartbeatsToFlush.map(h => h.device_id)
+    ]);
 
     try {
         await prisma.$transaction([
-            ...(heartbeatsToFlush.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeatsToFlush })] : []),
-            ...updateIds.map(dId => {
-                const data = updatesToFlush.get(dId);
+            // 1. First ensure all devices exist and update their status/heartbeat data
+            ...Array.from(allDeviceIds).map(dId => {
+                const data = updatesToFlush.get(dId) || {
+                    last_seen: new Date(),
+                    status: true,
+                    heartbeat: undefined
+                };
+
                 return prisma.device.upsert({
                     where: { device_id: dId },
                     update: {
@@ -52,18 +62,22 @@ async function flushHeartbeats() {
                         heartbeat: data.heartbeat
                     }
                 });
-            })
-        ]);
+            }),
+            // 2. Then create the heartbeat logs (FKs are now guaranteed)
+            ...(heartbeatsToFlush.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeatsToFlush })] : [])
+        ], { timeout: 30000 });
 
-        // Remove successfully flushed items
+        // Remove successfully flushed heartbeats
         heartbeatBuffer.splice(0, heartbeatsToFlush.length);
-        for (const dId of updateIds) {
-            if (deviceUpdateBuffer.get(dId) === updatesToFlush.get(dId)) {
+
+        // Remove successfully flushed device updates
+        for (const [dId, data] of updatesToFlush.entries()) {
+            if (deviceUpdateBuffer.get(dId) === data) {
                 deviceUpdateBuffer.delete(dId);
             }
         }
 
-        logger.debug(`Successfully flushed ${heartbeatsToFlush.length} heartbeats and ${updateIds.length} device updates`);
+        logger.debug(`Successfully flushed ${heartbeatsToFlush.length} heartbeats and ${allDeviceIds.size} device updates`);
     } catch (err) {
         logger.error(err, `❌ Error flushing heartbeats/telemetry updates`);
     } finally {
