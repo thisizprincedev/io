@@ -455,7 +455,6 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
     // 💓 Pulse mechanism: Keep the connection warm and help the client-side watchdog
     const pulseInterval = setInterval(() => {
         if (socket.connected) {
-            logger.debug({ deviceId }, `💓 Sending pulse to device`);
             socket.emit('pulse', { timestamp: Date.now() });
         }
     }, 30000);
