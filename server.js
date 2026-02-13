@@ -1,12 +1,26 @@
 const cluster = require('cluster');
 const os = require('os');
+const http = require('http');
+const { setupMaster, setupWorker } = require('@socket.io/sticky');
+const { createAdapter } = require('@socket.io/cluster-adapter');
 const logger = require('./utils/logger');
 require('dotenv').config();
+
+const PORT = process.env.PORT || 3002;
 
 // --- MASTER PROCESS ---
 if (cluster.isPrimary && process.env.DISABLE_CLUSTER !== 'true') {
     const numWorkers = parseInt(process.env.SOCKET_WORKERS) || os.cpus().length;
-    logger.info(`Master process starting ${numWorkers} workers...`);
+    logger.info(`Master process starting ${numWorkers} workers on port ${PORT}...`);
+
+    const httpServer = http.createServer();
+    setupMaster(httpServer, {
+        loadBalancingMethod: 'least-connection', // Ensures balanced distribution
+    });
+
+    httpServer.listen(PORT, () => {
+        logger.info(`🚀 Sticky Master listening on port ${PORT}`);
+    });
 
     for (let i = 0; i < numWorkers; i++) {
         cluster.fork();
@@ -22,7 +36,6 @@ if (cluster.isPrimary && process.env.DISABLE_CLUSTER !== 'true') {
 
 // --- WORKER PROCESS ---
 const express = require('express');
-const http = require('http');
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -57,13 +70,18 @@ app.use(express.json());
 // 2. Socket.IO Setup
 const io = configureSocket(server);
 
-// 3. Socket.IO Middlewares
+// 3. Sticky Session Worker Setup
+if (process.env.DISABLE_CLUSTER !== 'true') {
+    setupWorker(io);
+}
+
+// 4. Socket.IO Middlewares
 setupAuthMiddleware(io);
 
-// 4. Register Event Handlers
+// 5. Register Event Handlers
 registerHandlers(io, notifyChange);
 
-// 5. REST Routes
+// 6. REST Routes
 app.get('/metrics', metricsEndpoint);
 app.use('/api', httpAuthMiddleware); // Secure all API routes
 setupRoutes(app, prisma, io, notifyChange);
@@ -75,14 +93,14 @@ if ((process.env.NODE_ENV || 'development') === 'development') {
     });
 }
 
-// 6. Graceful Shutdown
+// 7. Graceful Shutdown
 const termShutdown = async (signal) => {
-    logger.info({ signal }, '🛑 Received signal, shutting down gracefully...');
+    logger.info({ signal, pid: process.pid }, '🛑 Received signal, shutting down gracefully...');
     try {
         await prisma.$disconnect();
         pubClient.quit();
         server.close(() => {
-            logger.info('✅ Server closed. Exiting.');
+            logger.info({ pid: process.pid }, '✅ Worker closed. Exiting.');
             process.exit(0);
         });
     } catch (err) {
@@ -98,9 +116,15 @@ process.on('SIGINT', () => termShutdown('SIGINT'));
 process.on('uncaughtException', (error) => logger.error(error, '💥 Uncaught Exception'));
 process.on('unhandledRejection', (reason, promise) => logger.error({ reason, promise }, '💥 Unhandled Rejection'));
 
-// 7. Start Server
-const PORT = process.env.PORT || 3002;
-server.listen(PORT, async () => {
-    logger.info(`🚀 Worker ${process.pid} listening on port ${PORT}`);
-    await connectDatabase();
+// 8. Start Worker
+// Note: server.listen is NOT called in workers when using @socket.io/sticky (Master handles it)
+// but if clustering is disabled, this process is responsible for listening.
+connectDatabase().then(() => {
+    if (process.env.DISABLE_CLUSTER === 'true') {
+        server.listen(PORT, () => {
+            logger.info(`🚀 Worker ${process.pid} (Single Process) listening on port ${PORT}`);
+        });
+    } else {
+        logger.info(`🚀 Worker ${process.pid} connected to database and ready`);
+    }
 });

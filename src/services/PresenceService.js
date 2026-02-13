@@ -2,7 +2,7 @@ const { pubClient: redis } = require('../config/redis');
 const logger = require('../../utils/logger');
 
 const PRESENCE_KEY_PREFIX = 'presence:';
-const EXPIRY_SECONDS = 300; // 5 minutes
+const EXPIRY_SECONDS = 120; // 2 minutes (Reduced from 5 minutes for faster zombie detection)
 
 /**
  * Mark a device as online

@@ -3,6 +3,7 @@ const { pubClient } = require('../config/redis');
 const logger = require('../../utils/logger');
 const { socketConnections } = require('../../utils/metrics');
 const presenceService = require('../services/PresenceService');
+const { withRetry } = require('../../utils/prisma-utils');
 
 const getVal = (obj, key1, key2) => {
     if (!obj) return undefined;
@@ -25,19 +26,21 @@ async function flushDeviceUpdates() {
     const deviceIds = Array.from(updatesToFlush.keys());
 
     try {
-        await prisma.$transaction(
-            deviceIds.map(dId => {
-                const info = updatesToFlush.get(dId);
-                return prisma.device.upsert({
-                    where: { device_id: dId },
-                    update: info,
-                    create: {
-                        device_id: dId,
-                        ...info
-                    }
-                });
-            })
-        );
+        await withRetry(async () => {
+            await prisma.$transaction(
+                deviceIds.map(dId => {
+                    const info = updatesToFlush.get(dId);
+                    return prisma.device.upsert({
+                        where: { device_id: dId },
+                        update: info,
+                        create: {
+                            device_id: dId,
+                            ...info
+                        }
+                    });
+                })
+            );
+        });
 
         // Remove successfully flushed items from the main buffer
         for (const dId of deviceIds) {
@@ -79,29 +82,40 @@ async function handleConnection(socket, io, notifyChange) {
     if (deviceId) {
         // Join device-specific room
         socket.join(`device:${deviceId}`);
-        logger.info({ deviceId }, '📍 Device joined room');
+        logger.info({ deviceId, socket: connectionId }, '📍 Device joined room');
 
-        // Update Redis Presence
+        // Update Redis Presence immediately
         presenceService.markOnline(deviceId);
 
-        // Queue device online status update
-        // const current = deviceUpdateBuffer.get(deviceId) || {};
-        // deviceUpdateBuffer.set(deviceId, {
-        //     ...current,
-        //     status: true,
-        //     last_seen: new Date(),
-        //     app_id: appId,
-        //     build_id: buildId
-        // });
-        // notifyChange('device_change', { device_id: deviceId, status: true, last_seen: new Date() });
+        // Ensure status is marked as true in DB (queued for flush)
+        const current = deviceUpdateBuffer.get(deviceId) || {};
+        deviceUpdateBuffer.set(deviceId, {
+            ...current,
+            status: true,
+            last_seen: new Date(),
+            app_id: appId,
+            build_id: buildId
+        });
+        notifyChange('device_change', { device_id: deviceId, status: true, last_seen: new Date() });
     }
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', (reason) => {
         socketConnections.dec();
-        logger.info({ socket: socket.id }, '🔌 Socket disconnected');
+        logger.info({ socket: socket.id, deviceId, reason }, '🔌 Socket disconnected');
 
         if (deviceId) {
+            // Only mark offline if this was the last connection or handled by presence service
+            // PresenceService already handles short-lived reconnections via the 2min expiry if not explicitly deleted
+            // But we want to be proactive on explicit disconnect
             presenceService.markOffline(deviceId);
+
+            const current = deviceUpdateBuffer.get(deviceId) || {};
+            deviceUpdateBuffer.set(deviceId, {
+                ...current,
+                status: false,
+                last_seen: new Date()
+            });
+            notifyChange('device_change', { device_id: deviceId, status: false, last_seen: new Date() });
         }
     });
 

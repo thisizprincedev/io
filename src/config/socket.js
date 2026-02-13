@@ -10,13 +10,17 @@ function configureSocket(server) {
         },
         adapter: createRedisAdapter(),
         allowEIO3: true,
-        transports: ['websocket'], // Force websocket only for 1M scale performance
-        perMessageDeflate: false,    // Reduce CPU/Memory per connection
-        pingTimeout: 60000,          // Balanced for high-concurrency (1m)
-        pingInterval: 10000,         // Faster detection of dead connections
-        connectTimeout: 30000,
-        maxHttpBufferSize: 1e6,      // 1MB (Reduces memory risk per client)
-        cleanupEmptyChildNamespaces: true
+        // transports: ['websocket'], // Allowed polling fallback now that sticky sessions are enabled
+        perMessageDeflate: false,
+        pingTimeout: 30000,          // Reduced from 60s to 30s for faster dead-connection detection
+        pingInterval: 15000,         // Slightly slower interval to reduce overhead on 1M scale
+        connectTimeout: 45000,       // More generous for slow mobile networks
+        maxHttpBufferSize: 1e6,      // 1MB
+        cleanupEmptyChildNamespaces: true,
+        connectionStateRecovery: {    // Enable state recovery for short disconnections
+            maxDisconnectionDuration: 2 * 60 * 1000,
+            skipMiddlewares: true,
+        }
     });
 
     // Memory optimization: Discard raw request data after handshake

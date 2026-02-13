@@ -2766,3 +2766,99 @@
 {"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-12T15:05:30.295Z"}
 {"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T15:05:30.501Z"}
 {"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-12T15:05:30.742Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T16:11:05.249Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T16:28:34.010Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T16:42:29.196Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T17:02:31.290Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T17:10:04.851Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T17:22:33.327Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T17:32:40.362Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T17:52:34.813Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T18:01:04.267Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T18:15:08.346Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T18:48:19.714Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T19:02:02.711Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T19:21:52.499Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T19:38:48.073Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T19:44:50.219Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T20:01:49.671Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T20:11:26.649Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T20:28:16.362Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T21:03:03.237Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T21:37:23.783Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T22:04:03.140Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T22:36:46.581Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T23:05:02.924Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T23:39:02.513Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-12T23:46:08.475Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T00:33:56.510Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T00:49:53.574Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T01:23:26.585Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T01:38:40.577Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T02:10:34.855Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T02:19:53.454Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T02:35:46.663Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T03:08:54.952Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T03:20:53.543Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T03:53:02.018Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T04:14:23.168Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T04:21:47.506Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T04:55:46.951Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T05:22:47.493Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T05:56:21.028Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T06:23:50.219Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T06:46:48.901Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T07:23:17.866Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T07:58:41.208Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T08:25:29.394Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T09:01:12.527Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T09:26:29.083Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T09:44:08.059Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T10:06:12.345Z"}
+{"label":"Redis Client Error","level":"error","message":"read ETIMEDOUT","stack":"Error: read ETIMEDOUT\n    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)","timestamp":"2026-02-13T10:15:40.244Z"}
+{"label":"Redis Client Error","level":"error","message":"getaddrinfo ENOTFOUND redis-13854.c55061.ap-south-1-mz.ec2.cloud.rlrcp.com","stack":"Error: getaddrinfo ENOTFOUND redis-13854.c55061.ap-south-1-mz.ec2.cloud.rlrcp.com\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)","timestamp":"2026-02-13T10:15:40.959Z"}
+{"label":"Redis Client Error","level":"error","message":"getaddrinfo ENOTFOUND redis-13854.c55061.ap-south-1-mz.ec2.cloud.rlrcp.com","stack":"Error: getaddrinfo ENOTFOUND redis-13854.c55061.ap-south-1-mz.ec2.cloud.rlrcp.com\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)","timestamp":"2026-02-13T10:15:41.165Z"}
+{"label":"Redis Client Error","level":"error","message":"getaddrinfo ENOTFOUND redis-13854.c55061.ap-south-1-mz.ec2.cloud.rlrcp.com","stack":"Error: getaddrinfo ENOTFOUND redis-13854.c55061.ap-south-1-mz.ec2.cloud.rlrcp.com\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)","timestamp":"2026-02-13T10:15:41.490Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T10:15:48.177Z"}
+{"level":"info","message":"🚀 Worker 79786 listening on port 3002","timestamp":"2026-02-13T11:12:43.338Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T11:12:43.343Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T11:12:43.617Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T11:12:43.746Z"}
+{"level":"info","message":"🚀 Worker 79832 listening on port 3002","timestamp":"2026-02-13T11:12:55.661Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T11:12:55.663Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T11:12:55.786Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T11:12:56.066Z"}
+{"level":"info","message":"🚀 Worker 79931 listening on port 3002","timestamp":"2026-02-13T11:13:17.176Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T11:13:17.177Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T11:13:17.378Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T11:13:17.580Z"}
+{"level":"info","message":"🚀 Worker 79975 listening on port 3002","timestamp":"2026-02-13T11:13:25.795Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T11:13:25.797Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T11:13:25.895Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T11:13:26.194Z"}
+{"level":"info","message":"🚀 Worker 80016 listening on port 3002","timestamp":"2026-02-13T11:13:36.466Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T11:13:36.468Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T11:13:36.683Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T11:13:36.890Z"}
+{"level":"info","message":"🚀 Worker 80054 listening on port 3002","timestamp":"2026-02-13T11:13:43.700Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T11:13:43.701Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T11:13:43.800Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T11:13:44.109Z"}
+{"level":"info","message":"🚀 Worker 84854 listening on port 3002","timestamp":"2026-02-13T12:20:07.979Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T12:20:07.980Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T12:20:08.310Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T12:20:08.626Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T12:21:29.823Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T12:21:30.095Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T12:21:30.245Z"}
+{"level":"info","message":"🚀 Worker 85213 connected to database and ready","timestamp":"2026-02-13T12:21:30.245Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T12:21:42.744Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T12:21:42.848Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T12:21:43.177Z"}
+{"level":"info","message":"🚀 Worker 85258 (Single Process) listening on port 3002","timestamp":"2026-02-13T12:21:43.178Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T12:21:49.196Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T12:21:49.469Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T12:21:49.622Z"}
+{"level":"info","message":"🚀 Worker 85360 (Single Process) listening on port 3003","timestamp":"2026-02-13T12:21:49.623Z"}
+{"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","pid":85360,"signal":"SIGTERM","timestamp":"2026-02-13T12:21:54.041Z"}
+{"label":"✅ Worker closed. Exiting.","level":"info","message":"Log event","pid":85360,"timestamp":"2026-02-13T12:21:54.048Z"}
