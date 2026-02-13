@@ -82,7 +82,7 @@ async function handleConnection(socket, io, notifyChange) {
     if (deviceId) {
         // Join device-specific room
         socket.join(`device:${deviceId}`);
-        logger.info({ deviceId, socket: connectionId }, '📍 Device joined room');
+        logger.info({ deviceId, socket: connectionId, recovered: socket.recovered }, '📍 Device joined room');
 
         // Update Redis Presence immediately
         presenceService.markOnline(deviceId);
@@ -97,6 +97,8 @@ async function handleConnection(socket, io, notifyChange) {
             build_id: buildId
         });
         notifyChange('device_change', { device_id: deviceId, status: true, last_seen: new Date() });
+    } else {
+        logger.warn({ socket: socket.id }, '⚠️ Socket connected without deviceId');
     }
 
     socket.on('disconnect', (reason) => {

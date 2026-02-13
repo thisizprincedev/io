@@ -178,6 +178,7 @@ function setupRoutes(app, prisma, io, notifyChange) {
                 status: newCommand.status
             };
 
+            logger.info({ deviceId, commandId: newCommand.id }, '📡 Emitting command to device room');
             io.to(`device:${deviceId}`).emit('command', JSON.stringify([commandToSend]));
             res.json(newCommand);
         } catch (error) {

@@ -18,9 +18,9 @@ function configureSocket(server) {
         maxHttpBufferSize: 1e6,      // 1MB
         cleanupEmptyChildNamespaces: true,
         connectionStateRecovery: {    // Enable state recovery for short disconnections
-            maxDisconnectionDuration: 2 * 60 * 1000,
-            skipMiddlewares: true,
-        }
+            maxDisconnectionDuration: 5 * 60 * 1000, // Increased to 5 minutes
+            skipMiddlewares: false, // 🛡️ CRITICAL: Run auth middleware during recovery to re-populate socket.deviceId
+        },
     });
 
     // Memory optimization: Discard raw request data after handshake

@@ -2862,3 +2862,27 @@
 {"level":"info","message":"🚀 Worker 85360 (Single Process) listening on port 3003","timestamp":"2026-02-13T12:21:49.623Z"}
 {"label":"🛑 Received signal, shutting down gracefully...","level":"info","message":"Log event","pid":85360,"signal":"SIGTERM","timestamp":"2026-02-13T12:21:54.041Z"}
 {"label":"✅ Worker closed. Exiting.","level":"info","message":"Log event","pid":85360,"timestamp":"2026-02-13T12:21:54.048Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T12:40:59.077Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T12:40:59.347Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T12:40:59.939Z"}
+{"level":"info","message":"🚀 Worker 86949 (Single Process) listening on port 3002","timestamp":"2026-02-13T12:40:59.940Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T12:41:11.551Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T12:41:11.736Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T12:41:11.986Z"}
+{"level":"info","message":"🚀 Worker 86991 (Single Process) listening on port 3002","timestamp":"2026-02-13T12:41:11.987Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T13:01:48.082Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T13:01:48.355Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T13:01:48.545Z"}
+{"level":"info","message":"🚀 Worker 88891 (Single Process) listening on port 3002","timestamp":"2026-02-13T13:01:48.546Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T13:02:41.360Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T13:02:41.584Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T13:02:41.738Z"}
+{"level":"info","message":"🚀 Worker 89004 (Single Process) listening on port 3002","timestamp":"2026-02-13T13:02:41.739Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T13:02:54.312Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T13:02:54.415Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T13:02:54.728Z"}
+{"level":"info","message":"🚀 Worker 89051 (Single Process) listening on port 3002","timestamp":"2026-02-13T13:02:54.729Z"}
+{"level":"info","message":"Attempting to connect to database...","timestamp":"2026-02-13T13:02:56.351Z"}
+{"level":"info","message":"✅ Redis Client Connected (Streams Mode)","timestamp":"2026-02-13T13:02:56.458Z"}
+{"level":"info","message":"✅ Connected to database via Prisma","timestamp":"2026-02-13T13:02:56.772Z"}
+{"level":"info","message":"🚀 Worker 89081 (Single Process) listening on port 3002","timestamp":"2026-02-13T13:02:56.772Z"}
